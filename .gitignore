@@ -1,0 +1,6 @@
+config/conf.json
+node_modules
+tests/*
+*~
+*.log
+

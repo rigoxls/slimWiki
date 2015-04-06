@@ -1,0 +1,32 @@
+{
+  "name": "tubecast",
+  "version": "1.0.0",
+  "description": "secretPass",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rigoxls/secretPass.git"
+  },
+  "keywords": [
+    "node",
+    "backbone",
+    "javascript"
+  ],
+  "author": "Rigoberto Giraldo Carmona",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rigoxls/secretPass/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "express-session": "^1.10.4",
+    "mongoose": "^3.8.25",
+    "passport": "^0.2.1",
+    "passport-facebook": "^2.0.0",
+    "passport-twitter": "^1.0.3",
+    "swig": "^1.4.2"
+  }
+}
