@@ -1,0 +1,21 @@
+//users
+
+	id,
+	provider_id
+	provider
+	photo
+	createdAt
+
+//posts
+	id
+	user_id
+	created_at
+	edited_at
+	content
+	visible
+	comments : {
+		email //or annonymus
+		comment
+		date
+	}
+	tags : [one, two, three]

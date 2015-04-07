@@ -21,8 +21,8 @@ var Routes = function(app){
         controllers['homeController'].response('home', req, res, next);
     });
 
-    app.expressServer.get('/newPost', function(req, res, next){
-        controllers['contentController'].response('newPost', req, res, next);
+    app.expressServer.get('/dashboard', function(req, res, next){
+        controllers['workflowController'].response('dashboard', req, res, next);
     });
 
     //redirect the user to twitter for authentication. when complete, twitter

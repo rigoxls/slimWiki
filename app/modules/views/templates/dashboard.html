@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="panel-title">New Article
+                    <a class="anchorjs-link" href="#panel-title">
+                        <span class="anchorjs-icon"></span>
+                    </a>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="fm-elements">
+                    <span>Title</span>
+                    <input type="text" class="form-control" placeholder="Ex : How to start with angular and node" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="fm-elements">
+                    <span>Article Description</span>
+                    <textarea class="form-control" required placeholder="Summarize your article sample in 500 characters or less" rows="5" id="comment"></textarea>
+                </div>
+
+                <div class="fm-elements">
+                    <span>Article Content</span>
+                    <textarea class="form-control" required placeholder="Summarize your article sample in 500 characters or less" rows="5" id="comment"></textarea>
+                </div>
+
+                <div class="fm-elements">
+                    <button type="button" class="btn btn-info pull-right">Preview</button>
+                    <button type="button" class="btn btn-primary pull-right">Save Article</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="libs/angular.min.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/directives.js"></script>
+    <script src="/js/filters.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/main.js"></script>
+
+{% endblock %}
