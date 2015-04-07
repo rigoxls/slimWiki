@@ -11,11 +11,7 @@ var Home = function(){
 
 Home.prototype.home = function(req, res, next){
     var object = {};
-    console.info('+++++++++++++++++++++');
-    console.info(req.user);
     res.render('home', object);
-
-
 }
 
 module.exports = Home;

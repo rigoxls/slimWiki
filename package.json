@@ -1,13 +1,13 @@
 {
-  "name": "tubecast",
+  "name": "slimWiki",
   "version": "1.0.0",
-  "description": "secretPass",
+  "description": "slimWiki",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/rigoxls/secretPass.git"
+    "url": "git://github.com/rigoxls/slimWiki.git"
   },
   "keywords": [
     "node",
@@ -17,7 +17,7 @@
   "author": "Rigoberto Giraldo Carmona",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rigoxls/secretPass/issues"
+    "url": "https://github.com/rigoxls/slimWiki/issues"
   },
   "dependencies": {
     "body-parser": "^1.12.2",
