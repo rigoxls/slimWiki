@@ -5,7 +5,7 @@
     <div class="jumbotron">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" id="panel-title">New Article
+                <h3 class="panel-title" id="panel-title">Create a New Article
                     <a class="anchorjs-link" href="#panel-title">
                         <span class="anchorjs-icon"></span>
                     </a>
@@ -13,33 +13,33 @@
             </div>
             <div class="panel-body" ng-controller="newArticleController as nAC">
 
-                <form name="postForm" ng-submit="submitForm(postForm.$valid)" novalidate>
+                <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate>
                     <div class="fm-elements">
                         <span>Title</span>
                         <input type="text"
-                            ng-model="post.title"
+                            ng-model="article.title"
                             class="form-control"
-                            ng-class="{ 'ng-dirty' : postForm.$submitted }"
+                            ng-class="{ 'ng-dirty' : articleForm.$submitted }"
                             placeholder="Ex : How to start with angular and node" required>
                     </div>
 
                     <div class="fm-elements">
                         <span>Article Description</span>
-                        <textarea ng-model="post.description"
+                        <textarea ng-model="article.description"
                             class="form-control"
-                            ng-class="{ 'ng-dirty' : postForm.$submitted }"
-                            required placeholder="Summarize your article sample in 500 characters or less" rows="5"
-                            id="comment"></textarea>
+                            ng-class="{ 'ng-dirty' : articleForm.$submitted }"
+                            required placeholder="Summarize your article sample in 500 characters or less" rows="5">
+                            </textarea>
                     </div>
 
                     <div class="fm-elements">
                         <span>Article Content</span>
                         <textarea
-                            ng-model="post.content"
+                            ng-model="article.content"
                             class="form-control"
-                            ng-class="{ 'ng-dirty' : postForm.$submitted }"
+                            ng-class="{ 'ng-dirty' : articleForm.$submitted }"
                             required placeholder=" Write your article "
-                            rows="5" id="comment"></textarea>
+                            rows="5"></textarea>
                     </div>
 
                     <div class="fm-elements">
@@ -51,11 +51,11 @@
         </div>
     </div>
 
-    <script src="libs/angular.min.js"></script>
-    <script src="/js/controllers.js"></script>
-    <script src="/js/directives.js"></script>
-    <script src="/js/filters.js"></script>
-    <script src="/js/services.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="http://localhost:5000/libs/angular.min.js"></script>
+    <script src="http://localhost:5000//js/controllers.js"></script>
+    <script src="http://localhost:5000//js/directives.js"></script>
+    <script src="http://localhost:5000//js/filters.js"></script>
+    <script src="http://localhost:5000//js/services.js"></script>
+    <script src="http://localhost:5000//js/main.js"></script>
 
 {% endblock %}

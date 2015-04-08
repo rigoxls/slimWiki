@@ -21,8 +21,16 @@ var Routes = function(app){
         controllers['homeController'].response('home', req, res, next);
     });
 
-    app.expressServer.get('/dashboard', function(req, res, next){
-        controllers['workflowController'].response('dashboard', req, res, next);
+    app.expressServer.get('/dashboard/newArticle', function(req, res, next){
+        controllers['dashboardController'].response('newArticle', req, res, next);
+    });
+
+    //to deal all post actions
+    app.expressServer.post('/dashboard/post/', function(req, res, next){
+        controllers['dashboardController'].response('post', req, res, next);
+
+          /*res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({value:"somevalue"}));*/
     });
 
     //redirect the user to twitter for authentication. when complete, twitter
@@ -34,7 +42,7 @@ var Routes = function(app){
     //authentication process by attempting to obtain an access token.
     //If access was granted, the user will be logged in . Otherwise, authentication has failed.
     app.expressServer.get('/auth/twitter/callback',
-        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/dashboard',
+        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/dashboard/newArticle',
                                            failureRedirect: '/login' } ));
 
     // Redirect the user to Facebook for authentication.  When complete,
@@ -47,7 +55,7 @@ var Routes = function(app){
     // access was granted, the user will be logged in.  Otherwise,
     // authentication has failed.
     app.expressServer.get('/auth/facebook/callback',
-      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/dashboard',
+      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/dashboard/newArticle',
                                           failureRedirect: '/login' }));
 }
 

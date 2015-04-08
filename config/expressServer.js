@@ -13,7 +13,10 @@ var ExpressServer = function(config){
 
     this.expressServer = express();
 
-    this.expressServer.use(bodyParser.urlencoded({ extended: true}));
+    //Returns middleware that only parses json
+    this.expressServer.use( bodyParser.json() );
+    //Returns middleware that only parses urlencoded bodies
+    this.expressServer.use( bodyParser.urlencoded({ extended: false}) );
 
     this.expressServer.use(session({
         secret: 'secretpass-session-secret',

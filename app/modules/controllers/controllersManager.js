@@ -1,4 +1,4 @@
 module.exports = {
     homeController : require('./homeController'),
-    workflowController : require('./workflowController')
+    dashboardController : require('./dashboardController')
 }
