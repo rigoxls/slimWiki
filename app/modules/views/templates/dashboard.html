@@ -41,7 +41,7 @@
                             class="form-control"
                             ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
                             required placeholder=" Write your article "
-                            ui-tinymce ng-model="tinymceModel"
+                            ui-tinymce="tinymceOptions" ng-model="tinymceModel"
                             rows="5"></textarea>
                     </div>
 

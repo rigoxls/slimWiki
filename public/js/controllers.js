@@ -5,14 +5,6 @@
             // function to submit the form after all validation has occurred
             $scope.submitForm = function(isValid) {
 
-
-                $scope.tinymceOptions = {
-                    handle_event_callback: function (e) {
-                    // put logic here for keypress
-                    }
-                };
-
-
                 //if object doesn't exist, create it first time
                 $scope.article = $scope.article || {};
 
@@ -44,6 +36,13 @@
             $scope.cleanForm = function(){
                 $scope.article.title = $scope.article.description = $scope.article.content = '';
             };
+
+            $scope.tinymceOptions = {
+                menubar : false,
+                resize: false,
+                plugins : "advlist autolink lists link image charmap print preview anchor",
+                toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview"
+            }
 
         }])
 })();
