@@ -15,13 +15,13 @@
 
                 <info-message></info-message>
 
-                <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate>
+                <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate ng-model="fff">
                     <div class="fm-elements">
                         <span>Title</span>
                         <input type="text"
                             ng-model="article.title"
                             class="form-control"
-                            ng-class="{ 'ng-dirty' : articleForm.$submitted }"
+                            ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate }"
                             placeholder="Ex : How to start with angular and node" required>
                     </div>
 
@@ -29,7 +29,7 @@
                         <span>Article Description</span>
                         <textarea ng-model="article.description"
                             class="form-control"
-                            ng-class="{ 'ng-dirty' : articleForm.$submitted }"
+                            ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
                             required placeholder="Summarize your article sample in 500 characters or less" rows="5">
                             </textarea>
                     </div>
@@ -39,7 +39,7 @@
                         <textarea
                             ng-model="article.content"
                             class="form-control"
-                            ng-class="{ 'ng-dirty' : articleForm.$submitted }"
+                            ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
                             required placeholder=" Write your article "
                             rows="5"></textarea>
                     </div>
