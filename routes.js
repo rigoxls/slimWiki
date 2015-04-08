@@ -34,7 +34,7 @@ var Routes = function(app){
     //authentication process by attempting to obtain an access token.
     //If access was granted, the user will be logged in . Otherwise, authentication has failed.
     app.expressServer.get('/auth/twitter/callback',
-        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/newPost',
+        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/dashboard',
                                            failureRedirect: '/login' } ));
 
     // Redirect the user to Facebook for authentication.  When complete,
@@ -47,7 +47,7 @@ var Routes = function(app){
     // access was granted, the user will be logged in.  Otherwise,
     // authentication has failed.
     app.expressServer.get('/auth/facebook/callback',
-      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/newPost',
+      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/dashboard',
                                           failureRedirect: '/login' }));
 }
 

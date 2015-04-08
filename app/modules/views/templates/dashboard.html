@@ -11,27 +11,42 @@
                     </a>
                 </h3>
             </div>
-            <div class="panel-body">
-                <div class="fm-elements">
-                    <span>Title</span>
-                    <input type="text" class="form-control" placeholder="Ex : How to start with angular and node" aria-describedby="basic-addon1">
-                </div>
+            <div class="panel-body" ng-controller="newArticleController as nAC">
 
-                <div class="fm-elements">
-                    <span>Article Description</span>
-                    <textarea class="form-control" required placeholder="Summarize your article sample in 500 characters or less" rows="5" id="comment"></textarea>
-                </div>
+                <form name="postForm" ng-submit="submitForm(postForm.$valid)" novalidate>
+                    <div class="fm-elements">
+                        <span>Title</span>
+                        <input type="text"
+                            ng-model="post.title"
+                            class="form-control"
+                            ng-class="{ 'ng-dirty' : postForm.$submitted }"
+                            placeholder="Ex : How to start with angular and node" required>
+                    </div>
 
-                <div class="fm-elements">
-                    <span>Article Content</span>
-                    <textarea class="form-control" required placeholder="Summarize your article sample in 500 characters or less" rows="5" id="comment"></textarea>
-                </div>
+                    <div class="fm-elements">
+                        <span>Article Description</span>
+                        <textarea ng-model="post.description"
+                            class="form-control"
+                            ng-class="{ 'ng-dirty' : postForm.$submitted }"
+                            required placeholder="Summarize your article sample in 500 characters or less" rows="5"
+                            id="comment"></textarea>
+                    </div>
 
-                <div class="fm-elements">
-                    <button type="button" class="btn btn-info pull-right">Preview</button>
-                    <button type="button" class="btn btn-primary pull-right">Save Article</button>
-                </div>
+                    <div class="fm-elements">
+                        <span>Article Content</span>
+                        <textarea
+                            ng-model="post.content"
+                            class="form-control"
+                            ng-class="{ 'ng-dirty' : postForm.$submitted }"
+                            required placeholder=" Write your article "
+                            rows="5" id="comment"></textarea>
+                    </div>
 
+                    <div class="fm-elements">
+                        <button type="button" class="btn btn-info pull-right">Preview</button>
+                        <button type="submit" class="btn btn-primary pull-right" ng-disabled="userForm.$invalid">Save Article</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
