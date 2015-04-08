@@ -22,7 +22,10 @@ Dashboard.prototype.post = function(req, res, next){
     this.model.insert(req.body, function(doc){
         if(doc){
           res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({value:"saved successfully"}));
+          res.end(JSON.stringify( {
+            textResponse: "New article saved successfully",
+            data: doc
+          }));
         }
     });
 };

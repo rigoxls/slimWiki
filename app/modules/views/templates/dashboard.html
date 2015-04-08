@@ -13,6 +13,8 @@
             </div>
             <div class="panel-body" ng-controller="newArticleController as nAC">
 
+                <info-message></info-message>
+
                 <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate>
                     <div class="fm-elements">
                         <span>Title</span>
