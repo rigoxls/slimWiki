@@ -15,21 +15,15 @@
 
                     $http.post("http://localhost:5000/dashboard/post/", articleContent)
                         .success(function(data, status, headers, config) {
-                           // this callback will be called asynchronously
-                           // when the response is available
                            console.info("good");
+                           console.info(data);
                         }).
                         error(function(data, status, headers, config) {
                             console.info("bad");
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
+                            console.info(data);
                     });
                 }
             };
-
-
-
-
 
         }])
 })();

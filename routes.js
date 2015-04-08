@@ -28,9 +28,6 @@ var Routes = function(app){
     //to deal all post actions
     app.expressServer.post('/dashboard/post/', function(req, res, next){
         controllers['dashboardController'].response('post', req, res, next);
-
-          /*res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({value:"somevalue"}));*/
     });
 
     //redirect the user to twitter for authentication. when complete, twitter
