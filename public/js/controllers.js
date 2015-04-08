@@ -5,6 +5,14 @@
             // function to submit the form after all validation has occurred
             $scope.submitForm = function(isValid) {
 
+
+                $scope.tinymceOptions = {
+                    handle_event_callback: function (e) {
+                    // put logic here for keypress
+                    }
+                };
+
+
                 //if object doesn't exist, create it first time
                 $scope.article = $scope.article || {};
 

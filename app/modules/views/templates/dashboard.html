@@ -41,6 +41,7 @@
                             class="form-control"
                             ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
                             required placeholder=" Write your article "
+                            ui-tinymce ng-model="tinymceModel"
                             rows="5"></textarea>
                     </div>
 
@@ -53,11 +54,13 @@
         </div>
     </div>
 
-    <script src="http://localhost:5000/libs/angular.min.js"></script>
-    <script src="http://localhost:5000//js/controllers.js"></script>
-    <script src="http://localhost:5000//js/directives.js"></script>
-    <script src="http://localhost:5000//js/filters.js"></script>
-    <script src="http://localhost:5000//js/services.js"></script>
-    <script src="http://localhost:5000//js/main.js"></script>
+    <script src="../libs/tinymce/tinymce.min.js"></script>
+    <script src="../libs/angular.min.js"></script>
+    <script src="../js/controllers.js"></script>
+    <script src="../js/directives.js"></script>
+    <script src="../js/filters.js"></script>
+    <script src="../js/services.js"></script>
+    <script  src="../libs/angular-ui-tinymce/src/tinymce.js"></script>
+    <script src="../js/main.js"></script>
 
 {% endblock %}

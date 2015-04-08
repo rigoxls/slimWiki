@@ -1,5 +1,8 @@
 config/conf.json
 node_modules
+public/libs/tinymce
+public/libs/angular-ui-tinymce
+public/libs/angular
 tests/*
 *~
 *.log
