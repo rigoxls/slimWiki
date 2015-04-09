@@ -37,12 +37,13 @@
                 $scope.article.title = $scope.article.description = $scope.article.content = '';
             };
 
-            $scope.tinymceOptions = {
-                menubar : false,
-                resize: false,
-                plugins : "advlist autolink lists link image charmap print preview anchor",
-                toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview"
-            }
+            $scope.editorOptions = {
+                extraPlugins: 'codesnippet',
+                toolbar: [
+                    [ 'Source' ], [ 'Undo', 'Redo' ], [ 'Bold', 'Italic', 'Underline' ], [ 'CodeSnippet' ]
+                ],
+                codeSnippet_theme: 'monokai_sublime'
+            };
 
         }])
 })();

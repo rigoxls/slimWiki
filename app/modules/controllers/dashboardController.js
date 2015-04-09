@@ -19,7 +19,10 @@ Dashboard.prototype.post = function(req, res, next){
 
     if(!req.body) return false;
 
-    this.model.insert(req.body, function(doc){
+    var data = req.body;
+    data.user = req.user;
+
+    this.model.insert(data, function(doc){
         if(doc){
           res.setHeader('Content-Type', 'application/json');
           res.end(JSON.stringify( {

@@ -23,7 +23,7 @@ var Routes = function(app){
 
     app.expressServer.get('/dashboard/newArticle', function(req, res, next){
         //not user, redirect
-        //if(!req.user) res.redirect('/home');
+        if(!req.user) res.redirect('/home');
         controllers['dashboardController'].response('newArticle', req, res, next);
     });
 

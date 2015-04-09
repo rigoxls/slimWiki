@@ -41,7 +41,7 @@
                             class="form-control"
                             ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
                             required placeholder=" Write your article "
-                            ui-tinymce="tinymceOptions" ng-model="tinymceModel"
+                            ckeditor="editorOptions" ng-model="modelName"
                             rows="5"></textarea>
                     </div>
 
@@ -54,13 +54,16 @@
         </div>
     </div>
 
-    <script src="../libs/tinymce/tinymce.min.js"></script>
     <script src="../libs/angular.min.js"></script>
+
+        <script src="../libs/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
+        <script src="../libs/ng-ckeditor/src/scripts/02-directive.js"></script>
+        <link rel="stylesheet" href="../libs/ng-ckeditor/ng-ckeditor.css">
+
     <script src="../js/controllers.js"></script>
     <script src="../js/directives.js"></script>
     <script src="../js/filters.js"></script>
     <script src="../js/services.js"></script>
-    <script  src="../libs/angular-ui-tinymce/src/tinymce.js"></script>
     <script src="../js/main.js"></script>
 
 {% endblock %}

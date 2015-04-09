@@ -9,6 +9,7 @@ var ArticleModel = function(conf){
 ArticleModel.prototype.insert = function(data, callback){
 
     var predefinedData = {
+        user_id: data.user._id,
         title: data.title,
         description: data.description,
         content: data.content

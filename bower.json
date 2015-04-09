@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-ui-tinymce": "~0.0.5"
+   
   }
 }

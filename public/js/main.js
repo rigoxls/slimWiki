@@ -1,7 +1,7 @@
 (function(){
 
     var app = angular.module('slimWiki', [
-        'ui.tinymce',
+        'ngCkeditor',
         'slimWiki.controllers',
         'slimWiki.directives',
         'slimWiki.filters',
