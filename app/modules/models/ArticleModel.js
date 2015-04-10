@@ -14,7 +14,8 @@ ArticleModel.prototype.insert = function(data, callback){
         description: data.description,
         content: data.content,
         visible: data.visible,
-        permalink: data.permalink
+        permalink: data.permalink,
+        tags: data.tags
     };
 
     var cM = new modelArticle(predefinedData);

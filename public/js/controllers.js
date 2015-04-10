@@ -2,14 +2,14 @@
     angular.module('slimWiki.controllers',[])
         .controller('newArticleController', ['$scope', '$http', 'messageFactory', function($scope, $http, messageFactory){
 
+            //if object doesn't exist, create it first time
+            $scope.article = $scope.article || {};
+
             //init visibility
-            $scope.radioVisibility = '0';
+            $scope.article.radioVisibility = 0;
 
             // function to submit the form after all validation has occurred
             $scope.submitForm = function(isValid) {
-
-                //if object doesn't exist, create it first time
-                $scope.article = $scope.article || {};
 
                 //we need a simple validation to avoid showing invalid messages after save
                 $scope.article.validate = true;
@@ -22,12 +22,21 @@
                     permalink = permalink.replace(/(\.|\/)/g, '_');
                     permalink = permalink.replace(/\W/g, '') + '#' + Math.floor(Math.random() * 100);
 
+                    //tags
+                    var tags = [];
+                    if($scope.article.tags.length){
+                         tags = $scope.article.tags.map(function(obj){
+                            return obj.text;
+                        });
+                    }
+
                     var articleContent = {
                         title : $scope.article.title,
                         description : $scope.article.description,
                         content : $scope.article.content,
-                        visible : $scope.radioVisibility,
-                        permalink: permalink
+                        visible : $scope.article.radioVisibility,
+                        permalink: permalink,
+                        tags: tags
                     }
 
                     $http.post("/dashboard/post/", articleContent)
@@ -45,6 +54,7 @@
             //clean form
             $scope.cleanForm = function(){
                 $scope.article.title = $scope.article.description = $scope.article.content = '';
+                $scope.article.tags = [];
             };
 
             $scope.editorOptions = {

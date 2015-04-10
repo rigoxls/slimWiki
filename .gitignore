@@ -3,6 +3,7 @@ node_modules
 public/libs/tinymce
 public/libs/angular-ui-tinymce
 public/libs/angular
+public/libs/ng-tags-input/
 tests/*
 *~
 *.log

@@ -53,10 +53,15 @@
                         <span>Article Visibility</span>
                         <div>
                             <div class="btn-group">
-                                <label class="btn btn-primary" ng-model="radioVisibility" btn-radio="'1'">Visible</label>
-                                <label class="btn btn-default" ng-model="radioVisibility" btn-radio="'0'">Invisible</label>
+                                <label class="btn btn-primary" ng-model="article.radioVisibility" btn-radio="1">Visible</label>
+                                <label class="btn btn-default" ng-model="article.radioVisibility" btn-radio="0">Invisible</label>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="fm-elements">
+                    <span>Article Visibility</span>
+                        <tags-input ng-model="article.tags"></tags-input>
                     </div>
 
                     <div class="fm-elements">
@@ -69,8 +74,10 @@
     </div>
 
     <link rel="stylesheet" href="../libs/ng-ckeditor/ng-ckeditor.css">
+    <link rel="stylesheet" href="../libs/ng-tags-input/ng-tags-input.min.css">
 
     <script src="../libs/angular.min.js"></script>
+    <script src="../libs/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="../libs/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
     <script src="../libs/ng-ckeditor/src/scripts/02-directive.js"></script>
     <script src="../libs/ui-bootstrap-custom-0.12.1.min.js"></script>

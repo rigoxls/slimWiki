@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-   
+    "ng-tags-input": "2.3.0"
   }
 }
