@@ -19,3 +19,7 @@ textarea.ng-invalid.ng-dirty,
 div.ng-invalid.ng-dirty{
     border: 1px solid #D72704;
 }
+
+.jumbotron p{
+    margin-bottom: 5px;
+}
