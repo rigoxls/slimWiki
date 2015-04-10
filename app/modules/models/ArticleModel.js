@@ -1,4 +1,5 @@
 var modelArticle = require('./schema/articleSchema'),
+    sanitizer = require('sanitizer'),
     mongoose = require('mongoose');
 
 var ArticleModel = function(conf){
@@ -9,13 +10,13 @@ var ArticleModel = function(conf){
 ArticleModel.prototype.insert = function(data, callback){
 
     var predefinedData = {
-        user_id: data.user._id,
-        title: data.title,
-        description: data.description,
-        content: data.content,
-        visible: data.visible,
-        permalink: data.permalink,
-        tags: data.tags
+        user_id:     data.user._id,
+        title:       sanitizer.sanitize(data.title),
+        description: sanitizer.sanitize(data.description),
+        content:     sanitizer.sanitize(data.content),
+        visible:     data.visible,
+        permalink:   sanitizer.sanitize(data.permalink),
+        tags:        data.tags
     };
 
     var cM = new modelArticle(predefinedData);

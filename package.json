@@ -23,10 +23,11 @@
     "body-parser": "^1.12.2",
     "express": "^4.12.3",
     "express-session": "^1.10.4",
-    "mongoose": "^3.8.25",   
+    "mongoose": "^3.8.25",
     "passport": "^0.2.1",
     "passport-facebook": "^2.0.0",
     "passport-twitter": "^1.0.3",
+    "sanitizer": "^0.1.2",
     "swig": "^1.4.2"
   }
 }

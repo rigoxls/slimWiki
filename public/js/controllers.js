@@ -1,4 +1,6 @@
 (function(){
+    'use strict';
+
     angular.module('slimWiki.controllers',[])
         .controller('newArticleController', ['$scope', '$http', 'messageFactory', function($scope, $http, messageFactory){
 
