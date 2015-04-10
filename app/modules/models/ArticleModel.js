@@ -1,5 +1,4 @@
 var modelArticle = require('./schema/articleSchema'),
-    sanitizer = require('sanitizer'),
     mongoose = require('mongoose');
 
 var ArticleModel = function(conf){
@@ -11,11 +10,11 @@ ArticleModel.prototype.insert = function(data, callback){
 
     var predefinedData = {
         user_id:     data.user._id,
-        title:       sanitizer.sanitize(data.title),
-        description: sanitizer.sanitize(data.description),
-        content:     sanitizer.sanitize(data.content),
+        title:       data.title,
+        description: data.description,
+        content:     data.content,
         visible:     data.visible,
-        permalink:   sanitizer.sanitize(data.permalink),
+        permalink:   data.permalink,
         tags:        data.tags
     };
 
@@ -25,6 +24,20 @@ ArticleModel.prototype.insert = function(data, callback){
         if(err) return console.error(err);
         callback(data);
     });
+
+};
+
+ArticleModel.prototype.findByPermalink = function(data, callback){
+
+        this.model.find(
+        {
+           permalink: data.permalink
+        },
+        function(err, doc){
+            if(err) return console.error(err);
+           callback(doc);
+        }
+    );
 
 };
 

@@ -21,10 +21,11 @@ var Routes = function(app){
         controllers['homeController'].response('home', req, res, next);
     });
 
-    app.expressServer.get('/dashboard/newArticle', function(req, res, next){
+    //dahsboard is our main route, this route lets angularjs interect with its routes
+    app.expressServer.get('/dashboard', function(req, res, next){
         //not user, redirect
         if(!req.user) res.redirect('/home');
-        controllers['dashboardController'].response('newArticle', req, res, next);
+        controllers['dashboardController'].response('dashboard', req, res, next);
     });
 
     //to deal all post actions
@@ -41,7 +42,7 @@ var Routes = function(app){
     //authentication process by attempting to obtain an access token.
     //If access was granted, the user will be logged in . Otherwise, authentication has failed.
     app.expressServer.get('/auth/twitter/callback',
-        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/dashboard/newArticle',
+        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/dashboard/',
                                            failureRedirect: '/login' } ));
 
     // Redirect the user to Facebook for authentication.  When complete,
@@ -54,7 +55,7 @@ var Routes = function(app){
     // access was granted, the user will be logged in.  Otherwise,
     // authentication has failed.
     app.expressServer.get('/auth/facebook/callback',
-      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/dashboard/newArticle',
+      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/dashboard/',
                                           failureRedirect: '/login' }));
 }
 

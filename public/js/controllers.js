@@ -22,7 +22,7 @@
                     //create a unique permalink
                     var permalink = $scope.article.title.replace(/\s/g, '_');
                     permalink = permalink.replace(/(\.|\/)/g, '_');
-                    permalink = permalink.replace(/\W/g, '') + '#' + Math.floor(Math.random() * 100);
+                    permalink = permalink.replace(/\W/g, '') + '_' + Math.floor(Math.random() * 100);
 
                     //tags
                     var tags = [];
@@ -33,12 +33,13 @@
                     }
 
                     var articleContent = {
-                        title : $scope.article.title,
+                        action:       'createArticle',
+                        title :       $scope.article.title,
                         description : $scope.article.description,
-                        content : $scope.article.content,
-                        visible : $scope.article.radioVisibility,
-                        permalink: permalink,
-                        tags: tags
+                        content :     $scope.article.content,
+                        visible :     $scope.article.radioVisibility,
+                        permalink:    permalink,
+                        tags:         tags
                     }
 
                     $http.post("/dashboard/post/", articleContent)
@@ -62,11 +63,37 @@
             $scope.editorOptions = {
                 extraPlugins: 'codesnippet',
                 toolbar: [
-                    [ 'Source' ], [ 'Undo', 'Redo' ], [ 'Bold', 'Italic', 'Underline' ], [ 'CodeSnippet' ]
+                    [ 'Source' ], [ 'Undo', 'Redo' ], [ 'Bold', 'Italic', 'Underline', 'Image' ], [ 'CodeSnippet' ]
                 ],
                 codeSnippet_theme: 'monokai_sublime'
             };
 
+        }])
+
+        .controller('showArticleController', ['$scope', '$http', '$routeParams', '$sce', function($scope, $http, $routeParams, $sce){
+            if(!$routeParams.name){
+                //redirect to 404 page TODO
+            }
+
+            $scope.article = $scope.article || {};
+
+            var findArticle = {
+                action: 'findArticle',
+                permalink: $routeParams.name
+            };
+
+            $http.post("/dashboard/post/", findArticle)
+                .success(function(data, status, headers, config){
+
+                    var article = data.data;
+
+                    $scope.article.name = article.title;
+                    $scope.article.content = article.content;
+                }).
+                error(function(data, status, headers, config){
+                    //redirect to page 404
+                    console.info('article not found');
+                })
         }])
 })();
 

@@ -3,73 +3,7 @@
 {% block content %}
 
     <div class="jumbotron">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title" id="panel-title">Create a New Article
-                    <a class="anchorjs-link" href="#panel-title">
-                        <span class="anchorjs-icon"></span>
-                    </a>
-                </h3>
-            </div>
-            <div class="panel-body" ng-controller="newArticleController as nAC">
-
-                <info-message></info-message>
-
-                <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate >
-                    <div class="fm-elements">
-                        <span>Title</span>
-                        <input type="text"
-                            ng-model="article.title"
-                            class="form-control"
-                            ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate }"
-                            placeholder="Ex : How to start with angular and node" required>
-                    </div>
-
-                    <div class="fm-elements">
-                        <span>Article Description</span>
-                        <textarea ng-model="article.description"
-                            class="form-control"
-                            ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
-                            required placeholder="Summarize your article sample in 500 characters or less" rows="5">
-                            </textarea>
-                    </div>
-
-                    <div class="fm-elements">
-                        <span>Article Content</span>
-                        <!-- remember !article.content validate if content was setted, if not and submitted, put invalid classes -->
-                        <div ng-class="{ 'ng-dirty ng-invalid' : articleForm.$submitted && article.validate && !article.content}">
-                            <textarea
-                                ng-model="article.content"
-                                class="form-control"
-                                ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
-                                required placeholder=" Write your article "
-                                ckeditor="editorOptions" ng-model="modelName"
-                                rows="5">
-                            </textarea>
-                        </div>
-                    </div>
-
-                    <div class="fm-elements">
-                        <span>Article Visibility</span>
-                        <div>
-                            <div class="btn-group">
-                                <label class="btn btn-primary" ng-model="article.radioVisibility" btn-radio="1">Visible</label>
-                                <label class="btn btn-default" ng-model="article.radioVisibility" btn-radio="0">Invisible</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fm-elements">
-                    <span>Article Tags</span>
-                        <tags-input ng-model="article.tags"></tags-input>
-                    </div>
-
-                    <div class="fm-elements">
-                        <button type="button" class="btn btn-info pull-right">Preview</button>
-                        <button type="submit" class="btn btn-primary pull-right" ng-disabled="userForm.$invalid">Save Article</button>
-                    </div>
-                </form>
-            </div>
+        <div class="panel panel-primary" ng-view>
         </div>
     </div>
 
@@ -77,6 +11,7 @@
     <link rel="stylesheet" href="../libs/ng-tags-input/ng-tags-input.min.css">
 
     <script src="../libs/angular.min.js"></script>
+    <script src="../libs/angular-route.min.js"></script>
     <script src="../libs/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="../libs/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
     <script src="../libs/ng-ckeditor/src/scripts/02-directive.js"></script>
