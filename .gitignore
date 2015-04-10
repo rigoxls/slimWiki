@@ -4,6 +4,7 @@ public/libs/tinymce
 public/libs/angular-ui-tinymce
 public/libs/angular
 public/libs/ng-tags-input/
+public/libs/angular-sanitize
 tests/*
 *~
 *.log
