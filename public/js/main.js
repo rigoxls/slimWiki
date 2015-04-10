@@ -1,6 +1,7 @@
 (function(){
 
     var app = angular.module('slimWiki', [
+        'ui.bootstrap',
         'ngCkeditor',
         'slimWiki.controllers',
         'slimWiki.directives',

@@ -8,6 +8,7 @@ var ArticleSchema = new Schema({
     content: String,
     visible: Boolean,
     saved: Boolean,
+    permalink: String,
     created_at: { type: Date, default: Date.now },
     edited_at: { type: Date, default: Date.now },
     tags : [],

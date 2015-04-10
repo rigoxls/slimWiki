@@ -12,7 +12,9 @@ ArticleModel.prototype.insert = function(data, callback){
         user_id: data.user._id,
         title: data.title,
         description: data.description,
-        content: data.content
+        content: data.content,
+        visible: data.visible,
+        permalink: data.permalink
     };
 
     var cM = new modelArticle(predefinedData);

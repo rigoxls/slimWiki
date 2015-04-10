@@ -14,6 +14,8 @@ button{
     margin: 3px;
 }
 
-input.ng-invalid.ng-dirty, textarea.ng-invalid.ng-dirty{
+input.ng-invalid.ng-dirty,
+textarea.ng-invalid.ng-dirty,
+div.ng-invalid.ng-dirty{
     border: 1px solid #D72704;
 }

@@ -16,7 +16,6 @@ Dashboard.prototype.newArticle = function(req, res, next){
 };
 
 Dashboard.prototype.post = function(req, res, next){
-
     if(!req.body) return false;
 
     var data = req.body;

@@ -15,7 +15,7 @@
 
                 <info-message></info-message>
 
-                <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate ng-model="fff">
+                <form name="articleForm" ng-submit="submitForm(articleForm.$valid)" novalidate >
                     <div class="fm-elements">
                         <span>Title</span>
                         <input type="text"
@@ -36,13 +36,27 @@
 
                     <div class="fm-elements">
                         <span>Article Content</span>
-                        <textarea
-                            ng-model="article.content"
-                            class="form-control"
-                            ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
-                            required placeholder=" Write your article "
-                            ckeditor="editorOptions" ng-model="modelName"
-                            rows="5"></textarea>
+                        <!-- remember !article.content validate if content was setted, if not and submitted, put invalid classes -->
+                        <div ng-class="{ 'ng-dirty ng-invalid' : articleForm.$submitted && article.validate && !article.content}">
+                            <textarea
+                                ng-model="article.content"
+                                class="form-control"
+                                ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
+                                required placeholder=" Write your article "
+                                ckeditor="editorOptions" ng-model="modelName"
+                                rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="fm-elements">
+                        <span>Article Visibility</span>
+                        <div>
+                            <div class="btn-group">
+                                <label class="btn btn-primary" ng-model="radioVisibility" btn-radio="'1'">Visible</label>
+                                <label class="btn btn-default" ng-model="radioVisibility" btn-radio="'0'">Invisible</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="fm-elements">
@@ -54,11 +68,12 @@
         </div>
     </div>
 
-    <script src="../libs/angular.min.js"></script>
+    <link rel="stylesheet" href="../libs/ng-ckeditor/ng-ckeditor.css">
 
-        <script src="../libs/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
-        <script src="../libs/ng-ckeditor/src/scripts/02-directive.js"></script>
-        <link rel="stylesheet" href="../libs/ng-ckeditor/ng-ckeditor.css">
+    <script src="../libs/angular.min.js"></script>
+    <script src="../libs/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
+    <script src="../libs/ng-ckeditor/src/scripts/02-directive.js"></script>
+    <script src="../libs/ui-bootstrap-custom-0.12.1.min.js"></script>
 
     <script src="../js/controllers.js"></script>
     <script src="../js/directives.js"></script>
