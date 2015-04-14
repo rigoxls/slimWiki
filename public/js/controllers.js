@@ -4,6 +4,9 @@
     angular.module('slimWiki.controllers',[])
         .controller('newArticleController', ['$scope', '$http', 'messageFactory', function($scope, $http, messageFactory){
 
+            //set panel
+            $scope.panel = "primary";
+
             //if object doesn't exist, create it first time
             $scope.article = $scope.article || {};
 

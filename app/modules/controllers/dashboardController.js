@@ -11,7 +11,9 @@ var Dashboard = function(){
 };
 
 Dashboard.prototype.dashboard = function(req, res, next){
-    var object = {};
+    var object = {
+        user: req.user
+    };
     res.render('dashboard', object);
 };
 

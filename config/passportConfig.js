@@ -38,7 +38,7 @@ var passportModule = function(){
             provider_id : profile.id,
             provider    : profile.provider,
             name        : profile.displayName,
-            photo       : profile.photos[0].value
+            photo       : profile.photos[0].value.replace('_normal','')
         }
 
         self.model.findAndUpdate(dataProfile, done);
@@ -58,7 +58,7 @@ var passportModule = function(){
             provider_id : profile.id,
             provider    : profile.provider,
             name        : profile.displayName,
-            photo       : profile.photos[0].value
+            photo       : 'http://graph.facebook.com/' + profile.id + '/picture?width=100&height=100'
         }
 
         self.model.findAndUpdate(dataProfile, done);
