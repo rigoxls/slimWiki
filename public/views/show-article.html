@@ -1,13 +1,23 @@
 <div class="panel-heading">
     <h3 class="panel-title" id="panel-title">
-        <p>
+        <p class="article-title">
             Article : {{ article.name }}
         </p>
     </h3>
 </div>
 <div class="panel-body">
 
-    <info-message></info-message>
+    <p class="article-date">Published
+        <time datetime="{{article.createdAt}}" pubdate="">
+            {{ article.createdAt | date : 'fullDate'}}
+        </time>
+    </p>
+
     <div ng-bind-html="article.content"></div>
+    <!-- waning, success, default , primary -->
+
+    <div class="bootstrap-tagsinput">
+        <span class="tag label label-primary label-important" ng-repeat="tag in article.tags">{{ tag }}</span>
+    </div>
 
 </div>

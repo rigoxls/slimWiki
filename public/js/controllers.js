@@ -70,7 +70,9 @@
 
         }])
 
-        .controller('showArticleController', ['$scope', '$http', '$routeParams', '$sce', function($scope, $http, $routeParams, $sce){
+        .controller('showArticleController', ['$scope', '$http', '$routeParams', '$sce', '$window','$timeout',
+            function($scope, $http, $routeParams, $sce, $window, $timeout){
+
             if(!$routeParams.name){
                 //redirect to 404 page TODO
             }
@@ -89,11 +91,24 @@
 
                     $scope.article.name = article.title;
                     $scope.article.content = article.content;
-                }).
-                error(function(data, status, headers, config){
+                    $scope.article.tags = article.tags;
+                    $scope.article.createdAt = article.created_at;
+
+                })
+                .error(function(data, status, headers, config){
                     //redirect to page 404
                     console.info('article not found');
-                })
+                });
+
+            $scope.setHighlighting = function(){
+                $timeout(function(){
+                    $window.hljs.initHighlighting();
+                },200);
+            };
+
+            //sintax highlight
+            $scope.setHighlighting();
+
         }])
 })();
 
