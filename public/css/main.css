@@ -24,6 +24,18 @@ h3.panel-title{
     max-width: 96px;
 }
 
+.no-background-image{
+    background-image:none;
+}
+
+.display-block{
+    display: block;
+}
+
+.fix-vertical-button{
+    left: -3px;
+}
+
 @media screen and (min-width: 768px){
     .jumbotron .h1, .jumbotron h1 {
         font-size: 50px !important;
@@ -36,6 +48,7 @@ h3.panel-title{
     .container .author-container{
         position: fixed;
         top: 110px;
+        max-width:202px;
     }
 }
 
