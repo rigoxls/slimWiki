@@ -9,6 +9,20 @@ h3.panel-title{
 .container .jumbotron{
     margin-top: 15px;
 }
+.container .author-container{
+    position: relative;
+    text-align: center;
+    background: #eee;
+    padding: 15px;
+    border-radius: 7px;
+}
+
+.autor-image{
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin: 0;
+    max-width: 96px;
+}
 
 @media screen and (min-width: 768px){
     .jumbotron .h1, .jumbotron h1 {
@@ -21,18 +35,7 @@ h3.panel-title{
 
     .container .author-container{
         position: fixed;
-        top: 65px;
-        text-align: center;
-        background: #eee;
-        padding: 15px;
-        border-radius: 7px;
-    }
-
-    .autor-image{
-        -webkit-border-radius: 50%;
-        border-radius: 50%;
-        margin: 0;
-        max-width: 96px;
+        top: 110px;
     }
 }
 
