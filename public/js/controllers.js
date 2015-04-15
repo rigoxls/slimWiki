@@ -114,7 +114,7 @@
 
         }])
 
-        .controller('listArticleController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+        .controller('listArticleController', ['$scope', '$http', '$routeParams','$window', function($scope, $http, $routeParams, $window){
 
             $scope.articles = $scope.articles || {};
 
@@ -125,8 +125,13 @@
 
             $http.post("/dashboard/post/", findArticles)
                 .success(function(data, status, headers, config){
+                    console.info(data);
                     $scope.articles = data.data;
                 });
+
+            $scope.searchByTag = function(tag){
+                $window.location = '/dashboard/#/listArticle/' + tag;
+            }
         }])
 })();
 

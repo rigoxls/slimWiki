@@ -5,15 +5,19 @@
 
     <div class="col-sm-12 col-md-4" ng-repeat="article in articles">
         <div class="thumbnail">
-          <div class="caption">
-            <h3 id="thumbnail-label">{{ article.title }}</h3>
-            <p>{{article.description}}</p>
+          <div class="caption caption-list">
+            <h3 class="thumbnail-label">{{ article.title }}</h3>
+            <p>{{article.description | limitTo:100}} ... </p>
             <p>
                 <div class="btn-group">
-                    <label class="btn btn-primary" ng-model="article.radioVisibility" btn-radio="1">Visible</label>
-                    <label class="btn btn-default" ng-model="article.radioVisibility" btn-radio="0">Invisible</label>
+                    <label class="btn btn-primary btn-sm" ng-model="article.visible" btn-radio="true">Public</label>
+                    <label class="btn btn-primary btn-sm" ng-model="article.visible" btn-radio="false">Private</label>
                 </div>
             </p>
+            <div class="bootstrap-tagsinput">
+                <span class="tag label label-danger label-important"
+                    ng-click="searchByTag(tag)" ng-repeat="tag in article.tags">{{ tag }}</span>
+            </div>
           </div>
         </div>
       </div>
