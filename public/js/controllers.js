@@ -2,16 +2,48 @@
     'use strict';
 
     angular.module('slimWiki.controllers',[])
-        .controller('newArticleController', ['$scope', '$http', 'messageFactory', function($scope, $http, messageFactory){
-
-            //set panel
-            $scope.panel = "default";
+        .controller('upsertArticleController', ['$scope', '$http', '$routeParams', 'messageFactory','CKEditorConfig', function($scope, $http, $routeParams, messageFactory, CKEditorConfig){
 
             //if object doesn't exist, create it first time
             $scope.article = $scope.article || {};
 
-            //init visibility
-            $scope.article.radioVisibility = 0;
+            var permalink = $routeParams.permalink || null;
+
+            $scope.pageTitle = (permalink) ? "Update Article" : "Create Article";;
+
+            //set panel
+            $scope.panel = "default";
+
+            //if permalink search article
+            if(permalink){
+
+                var findArticle = {
+                    action: 'findArticle',
+                    permalink: $routeParams.permalink
+                };
+
+                $http.post("/dashboard/post/", findArticle)
+                    .success(function(data, status, headers, config){
+
+                        var article = data.data;
+
+                        $scope.article.title = article.title;
+                        $scope.article.description = article.description;
+                        $scope.article.content = article.content;
+                        $scope.article.tags = article.tags;
+                        $scope.article.createdAt = article.created_at;
+                        $scope.article.radioVisibility = article.visible == true ? 1 : 0;
+                        $scope.article.id = article._id;
+
+                    })
+                    .error(function(data, status, headers, config){
+                        //redirect to page 404
+                        console.info('article not found');
+                    });
+            }else{
+                //init visibility
+                $scope.article.radioVisibility = 0;
+            }
 
             // function to submit the form after all validation has occurred
             $scope.submitForm = function(isValid) {
@@ -45,6 +77,12 @@
                         tags:         tags
                     }
 
+                    //if permalink update article
+                    if(permalink){
+                        articleContent.action = "updateArticle";
+                        articleContent.id = $scope.article.id;
+                    }
+
                     $http.post("/dashboard/post/", articleContent)
                         .success(function(data, status, headers, config) {
                            messageFactory.showMessage(data.textResponse, 1);
@@ -63,20 +101,14 @@
                 $scope.article.tags = [];
             };
 
-            $scope.editorOptions = {
-                extraPlugins: 'codesnippet',
-                toolbar: [
-                    [ 'Source' ], [ 'Undo', 'Redo' ], [ 'Bold', 'Italic', 'Underline', 'Image' ], [ 'CodeSnippet' ]
-                ],
-                codeSnippet_theme: 'monokai_sublime'
-            };
+            $scope.editorOptions = CKEditorConfig.configureCKEditor();
 
         }])
 
         .controller('showArticleController', ['$scope', '$http', '$routeParams', '$sce', '$window','$timeout',
             function($scope, $http, $routeParams, $sce, $window, $timeout){
 
-            if(!$routeParams.name){
+            if(!$routeParams.permalink){
                 //redirect to 404 page TODO
             }
 
@@ -84,7 +116,7 @@
 
             var findArticle = {
                 action: 'findArticle',
-                permalink: $routeParams.name
+                permalink: $routeParams.permalink
             };
 
             $http.post("/dashboard/post/", findArticle)
@@ -92,7 +124,7 @@
 
                     var article = data.data;
 
-                    $scope.article.name = article.title;
+                    $scope.article.title = article.title;
                     $scope.article.content = article.content;
                     $scope.article.tags = article.tags;
                     $scope.article.createdAt = article.created_at;
@@ -125,13 +157,17 @@
 
             $http.post("/dashboard/post/", findArticles)
                 .success(function(data, status, headers, config){
-                    console.info(data);
                     $scope.articles = data.data;
                 });
 
             $scope.searchByTag = function(tag){
                 $window.location = '/dashboard/#/listArticle/' + tag;
-            }
+            };
+
+            $scope.searchByPermalink = function(permalink){
+                $window.location = '/dashboard/#/showArticle/' + permalink;
+            };
         }])
+
 })();
 

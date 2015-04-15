@@ -1,5 +1,5 @@
 <div class="panel-heading">
-    <h3 class="panel-title" id="panel-title">Create a New Article
+    <h3 class="panel-title" id="panel-title">{{pageTitle}}
         <a class="anchorjs-link" href="#panel-title">
             <span class="anchorjs-icon"></span>
         </a>
@@ -37,7 +37,7 @@
                     class="form-control"
                     ng-class="{ 'ng-dirty' : articleForm.$submitted && article.validate}"
                     required placeholder=" Write your article "
-                    ckeditor="editorOptions" ng-model="modelName"
+                    ckeditor="editorOptions"
                     rows="5">
                 </textarea>
             </div>
@@ -62,5 +62,6 @@
             <button type="button" class="btn btn-info pull-right">Preview</button>
             <button type="submit" class="btn btn-primary pull-right" ng-disabled="userForm.$invalid">Save Article</button>
         </div>
+        <input type="hidden" ng-model="article.id">
     </form>
 </div>

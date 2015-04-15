@@ -37,6 +37,17 @@ Dashboard.prototype.post = function(req, res, next){
             }
         });
     }
+    else if(action === 'updateArticle'){
+        this.model.update(data, function(doc){
+            if(doc){
+                res.setHeader('Content-type', 'application/json');
+                res.end(JSON.stringify({
+                    textResponse: "Article updated",
+                    data: doc
+                }))
+            }
+        });
+    }
     else if(action === 'findArticle'){
         this.model.findByPermalink(data, function(doc){
             if(doc){

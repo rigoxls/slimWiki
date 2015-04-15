@@ -27,6 +27,35 @@ ArticleModel.prototype.insert = function(data, callback){
 
 };
 
+ArticleModel.prototype.update = function(data, callback){
+    //this.model.findOneAndUpdate(query, updateDate, options, function(err, doc)
+    var id = data.id;
+    options = { multi: false, upsert: false };
+
+/*    this.model.findOneAndUpdate({
+        _id: data.id
+    }, data, { upsert: false}).exec(function(err, doc){
+        callback(doc);
+    })*/
+
+    this.model.update({
+        _id: data.id
+    },{
+        $set:
+        {
+            title :       data.title,
+            description : data.description,
+            content :     data.content,
+            visible :     data.visible,
+            permalink:    data.permalink,
+            tags:         data.tags
+        }
+    },options,
+    function(err, doc){
+        callback(doc);
+    });
+}
+
 ArticleModel.prototype.findByPermalink = function(data, callback){
     this.model.find(
     {

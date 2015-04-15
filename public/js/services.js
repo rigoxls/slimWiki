@@ -32,4 +32,21 @@
             return factory;
         }])
 
+        .factory('CKEditorConfig',[function(){
+
+            var factory = {};
+
+            factory.configureCKEditor = function(){
+                return {
+                    extraPlugins: 'codesnippet',
+                    toolbar: [
+                        [ 'Source' ], [ 'Undo', 'Redo' ], [ 'Bold', 'Italic', 'Underline', 'Image' ], [ 'CodeSnippet' ]
+                    ],
+                    codeSnippet_theme: 'monokai_sublime'
+                };
+            };
+
+            return factory;
+        }])
+
 })();

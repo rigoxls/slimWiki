@@ -19,6 +19,10 @@ span.tag{
     cursor: pointer;
 }
 
+button.glyphicon-edit{
+    background-image: none;
+}
+
 .container .jumbotron{
     margin-top: 15px;
 }
@@ -31,7 +35,11 @@ span.tag{
 }
 
 .caption-list{
-    min-height: 250px;
+    height: 270px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
 
 .autor-image{

@@ -17,11 +17,11 @@
         $routeProvider
 
         .when('/', {
-            templateUrl : '../views/new-article.html',
-            controller : 'newArticleController'
+            templateUrl : '../views/upsert-article.html',
+            controller : 'upsertArticleController'
         })
 
-        .when('/showArticle/:name',{
+        .when('/showArticle/:permalink',{
             templateUrl : '../views/show-article.html',
             controller : 'showArticleController'
         })
@@ -29,6 +29,11 @@
         .when('/listArticle/:key?',{
             templateUrl : '../views/list-article.html',
             controller : 'listArticleController'
+        })
+
+        .when('/updateArticle/:permalink',{
+            templateUrl: '../views/upsert-article.html',
+            controller: 'upsertArticleController'
         })
 
         .otherwise('/',{
