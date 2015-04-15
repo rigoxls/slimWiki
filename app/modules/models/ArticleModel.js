@@ -28,17 +28,31 @@ ArticleModel.prototype.insert = function(data, callback){
 };
 
 ArticleModel.prototype.findByPermalink = function(data, callback){
-
-        this.model.find(
-        {
-           permalink: data.permalink
-        },
-        function(err, doc){
-            if(err) return console.error(err);
+    this.model.find(
+    {
+       permalink: data.permalink
+    },
+    function(err, doc){
+        if(err) return console.error(err);
            callback(doc);
         }
     );
+};
 
+ArticleModel.prototype.findByKey = function(data, callback){
+    this.model.find(
+    {
+        $or:
+        [
+            { title: new RegExp(data.key, 'i') },
+            { tags: data.key }
+        ]
+    },
+    function(err, doc){
+        if(err) return console.error(err);
+            callback(doc)
+        }
+    )
 };
 
 module.exports = ArticleModel;

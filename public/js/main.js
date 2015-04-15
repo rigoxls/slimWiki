@@ -26,6 +26,11 @@
             controller : 'showArticleController'
         })
 
+        .when('/listArticle/:key?',{
+            templateUrl : '../views/list-article.html',
+            controller : 'listArticleController'
+        })
+
         .otherwise('/',{
             redirectTo : '/'
         })

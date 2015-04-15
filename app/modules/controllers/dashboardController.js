@@ -1,4 +1,5 @@
 var conf = require('../../../config/conf'),
+    _ = require('underscore'),
     ArticleModel = require('../models/ArticleModel');
 
 var Dashboard = function(){
@@ -14,7 +15,6 @@ Dashboard.prototype.dashboard = function(req, res, next){
     var object = {
         user: req.user
     };
-    console.info(req.user);
     res.render('dashboard', object);
 };
 
@@ -42,8 +42,19 @@ Dashboard.prototype.post = function(req, res, next){
             if(doc){
                 res.setHeader('Content-type', 'application/json');
                 res.end(JSON.stringify({
-                    textResponse: "Article found",
+                    textResponse: _.isEmpty(doc) ? "no article found" : "articles found",
                     data: doc[0]
+                }));
+            }
+        });
+    }
+    else if(action === 'findArticles'){
+        this.model.findByKey(data, function(doc){
+            if(doc){
+                res.setHeader('Content-type','application/json');
+                res.end(JSON.stringify({
+                    textResponse: _.isEmpty(doc) ? "no articles found" : "articles found",
+                    data: doc
                 }));
             }
         });

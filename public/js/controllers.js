@@ -5,7 +5,7 @@
         .controller('newArticleController', ['$scope', '$http', 'messageFactory', function($scope, $http, messageFactory){
 
             //set panel
-            $scope.panel = "primary";
+            $scope.panel = "default";
 
             //if object doesn't exist, create it first time
             $scope.article = $scope.article || {};
@@ -112,6 +112,21 @@
             //sintax highlight
             $scope.setHighlighting();
 
+        }])
+
+        .controller('listArticleController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+
+            $scope.articles = $scope.articles || {};
+
+            var findArticles = {
+                action: 'findArticles',
+                key: $routeParams.key
+            };
+
+            $http.post("/dashboard/post/", findArticles)
+                .success(function(data, status, headers, config){
+                    $scope.articles = data.data;
+                });
         }])
 })();
 

@@ -1,0 +1,20 @@
+<div class="panel-body">
+    <h2>
+        List of Articles
+    </h2>
+
+    <div class="col-sm-12 col-md-4" ng-repeat="article in articles">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3 id="thumbnail-label">{{ article.title }}</h3>
+            <p>{{article.description}}</p>
+            <p>
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="article.radioVisibility" btn-radio="1">Visible</label>
+                    <label class="btn btn-default" ng-model="article.radioVisibility" btn-radio="0">Invisible</label>
+                </div>
+            </p>
+          </div>
+        </div>
+      </div>
+</div>
