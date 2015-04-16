@@ -42,7 +42,8 @@ ArticleModel.prototype.update = function(data, callback){
 
     this.model.update(
     {
-        _id: data.id
+        _id     : data.id,
+        user_id : data.user._id //important, just update own article
     },
     {
         $set: settedValues
@@ -54,10 +55,17 @@ ArticleModel.prototype.update = function(data, callback){
 }
 
 ArticleModel.prototype.findByPermalink = function(data, callback){
-    this.model.find(
-    {
+
+    var query = {
        permalink: data.permalink
-    },
+    };
+
+    if(data.user){
+        query.user_id = data.user._id;
+    }
+
+    this.model.find(
+    query,
     function(err, doc){
         if(err) return console.error(err);
            callback(doc);
@@ -66,13 +74,26 @@ ArticleModel.prototype.findByPermalink = function(data, callback){
 };
 
 ArticleModel.prototype.findByKey = function(data, callback){
-    this.model.find(
-    {
+
+    var query = {
         $or:
         [
             { title: new RegExp(data.key, 'i') },
             { tags: data.key }
         ]
+    };
+
+    if(data.user){
+        query.user_id = data.user._id;
+    }
+
+    this.model.find(
+    query,
+    {},
+    {
+        sort:{
+            title : 1
+        }
     },
     function(err, doc){
         if(err) return console.error(err);
