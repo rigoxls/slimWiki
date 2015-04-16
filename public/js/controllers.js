@@ -160,6 +160,9 @@
             $http.post("/dashboard/post/", findArticles)
                 .success(function(data, status, headers, config){
                     $scope.articles = data.data;
+                    if(!$scope.articles.lenght){
+                        $scope.articles.none = true;
+                    }
                 });
 
             $scope.searchByTag = function(tag){

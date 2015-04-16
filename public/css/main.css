@@ -97,6 +97,10 @@ p.article-date{
     color: white;
 }
 
+.panel-body{
+    min-height: 300px;
+}
+
 @media screen and (min-width: 768px){
     .jumbotron .h1, .jumbotron h1 {
         font-size: 50px !important;

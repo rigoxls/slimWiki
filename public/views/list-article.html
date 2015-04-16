@@ -1,10 +1,18 @@
 <div class="panel-body">
     <info-message></info-message>
-    <h2>
+    <h2 ng-show="!articles.none">
         List of Articles
     </h2>
 
-    <div id="id"></div>
+    <div ng-show="articles.none">
+        <h1 id="hello,-world!">
+            Welcome to SlimWiki
+            <a class="anchorjs-link" href="#hello,-world!"><span class="anchorjs-icon"></span></a></h1>
+            <p>
+                You can start creating a new article clicking in the button below. Choose between more than 20 code sintax and share it with your partners .
+            </p>
+            <p><a class="btn btn-primary btn-lg" href="/dashboard/#/" role="button">Create a new Article</a></p>
+    </div>
 
     <div class="col-sm-12 col-md-4" ng-repeat="article in articles">
         <div class="thumbnail">
