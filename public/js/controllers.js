@@ -7,19 +7,19 @@
             //if object doesn't exist, create it first time
             $scope.article = $scope.article || {};
 
-            var permalink = $routeParams.permalink || null;
+            var key = $routeParams.permalink || null;
 
-            $scope.pageTitle = (permalink) ? "Update Article" : "Create Article";;
+            $scope.pageTitle = (key) ? "Update Article" : "Create Article";;
 
             //set panel
             $scope.panel = "default";
 
-            //if permalink search article
-            if(permalink){
+            //if key search article
+            if(key){
 
                 var findArticle = {
                     action: 'findArticle',
-                    permalink: $routeParams.permalink
+                    permalink: key
                 };
 
                 $http.post("/dashboard/post/", findArticle)
@@ -77,8 +77,8 @@
                         tags:         tags
                     }
 
-                    //if permalink update article
-                    if(permalink){
+                    //if key update article
+                    if(key){
                         articleContent.action = "updateArticle";
                         articleContent.id = $scope.article.id;
                     }
@@ -86,7 +86,9 @@
                     $http.post("/dashboard/post/", articleContent)
                         .success(function(data, status, headers, config) {
                            messageFactory.showMessage(data.textResponse, 1);
-                           $scope.cleanForm();
+                           if(!key){
+                               $scope.cleanForm();
+                           }
                            $scope.article.validate = false;
                         }).
                         error(function(data, status, headers, config) {

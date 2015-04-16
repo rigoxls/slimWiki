@@ -32,12 +32,6 @@ ArticleModel.prototype.update = function(data, callback){
     var id = data.id;
     options = { multi: false, upsert: false };
 
-/*    this.model.findOneAndUpdate({
-        _id: data.id
-    }, data, { upsert: false}).exec(function(err, doc){
-        callback(doc);
-    })*/
-
     this.model.update({
         _id: data.id
     },{
@@ -57,6 +51,7 @@ ArticleModel.prototype.update = function(data, callback){
 }
 
 ArticleModel.prototype.findByPermalink = function(data, callback){
+    console.info(data);
     this.model.find(
     {
        permalink: data.permalink

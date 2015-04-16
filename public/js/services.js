@@ -1,6 +1,6 @@
 (function(){
     angular.module('slimWiki.services', [])
-        .factory('messageFactory', ['$timeout', '$rootScope', function($timeout, $rootScope){
+        .factory('messageFactory', ['$timeout', '$rootScope', '$window', function($timeout, $rootScope, $window){
             var factory = {};
             $rootScope.alertMessage = null;
             $rootScope.alertShow = false;
@@ -19,6 +19,8 @@
                 $rootScope.alertMessage = msg;
                 $rootScope.alertShow = true;
                 $rootScope.alertType = typeMessage;
+
+                $window.scrollTo(0,0);
 
                 $timeout(function(){
                     factory.hideMessage();
