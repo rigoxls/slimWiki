@@ -160,7 +160,7 @@
             $http.post("/dashboard/post/", findArticles)
                 .success(function(data, status, headers, config){
                     $scope.articles = data.data;
-                    if(!$scope.articles.lenght){
+                    if(!$scope.articles.length){
                         $scope.articles.none = true;
                     }
                 });
