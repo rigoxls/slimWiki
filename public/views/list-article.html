@@ -1,7 +1,10 @@
 <div class="panel-body">
+    <info-message></info-message>
     <h2>
         List of Articles
     </h2>
+
+    <div id="id"></div>
 
     <div class="col-sm-12 col-md-4" ng-repeat="article in articles">
         <div class="thumbnail">
@@ -11,8 +14,8 @@
             <p class="cursor-pointer" ng-click="searchByPermalink(article.permalink)">{{article.description | limitTo:100}} ... </p>
             <p>
                 <div class="btn-group">
-                    <label class="btn btn-primary btn-sm" ng-model="article.visible" btn-radio="true">Public</label>
-                    <label class="btn btn-primary btn-sm" ng-model="article.visible" btn-radio="false">Private</label>
+                    <label ng-click="updateVisibility(article._id, true)" class="btn btn-primary btn-sm" ng-model="article.visible" btn-radio="true">Public</label>
+                    <label ng-click="updateVisibility(article._id, false)" class="btn btn-primary btn-sm" ng-model="article.visible" btn-radio="false">Private</label>
                 </div>
             </p>
             <div class="bootstrap-tagsinput">

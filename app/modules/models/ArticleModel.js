@@ -30,28 +30,30 @@ ArticleModel.prototype.insert = function(data, callback){
 ArticleModel.prototype.update = function(data, callback){
     //this.model.findOneAndUpdate(query, updateDate, options, function(err, doc)
     var id = data.id;
-    options = { multi: false, upsert: false };
+    var options = { multi: false, upsert: false };
+    var settedValues = {};
 
-    this.model.update({
+    (data.title) ? settedValues.title = data.title : '';
+    (data.description) ? settedValues.description = data.description : '';
+    (data.content) ? settedValues.content = data.content : '';
+    (data.permalink) ? settedValues.permalink = data.permalink : '';
+    (data.tags) ? settedValues.tags = data.tags : '';
+    settedValues.visible = (data.visible) ? data.visible : 0;
+
+    this.model.update(
+    {
         _id: data.id
-    },{
-        $set:
-        {
-            title :       data.title,
-            description : data.description,
-            content :     data.content,
-            visible :     data.visible,
-            permalink:    data.permalink,
-            tags:         data.tags
-        }
-    },options,
+    },
+    {
+        $set: settedValues
+    }
+    ,options,
     function(err, doc){
         callback(doc);
     });
 }
 
 ArticleModel.prototype.findByPermalink = function(data, callback){
-    console.info(data);
     this.model.find(
     {
        permalink: data.permalink

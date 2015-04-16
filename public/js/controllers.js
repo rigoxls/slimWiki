@@ -12,7 +12,7 @@
             $scope.pageTitle = (key) ? "Update Article" : "Create Article";;
 
             //set panel
-            $scope.panel = "default";
+            $scope.panel = "primary";
 
             //if key search article
             if(key){
@@ -148,7 +148,7 @@
 
         }])
 
-        .controller('listArticleController', ['$scope', '$http', '$routeParams','$window', function($scope, $http, $routeParams, $window){
+        .controller('listArticleController', ['$scope', '$http', '$routeParams','$window','messageFactory', function($scope, $http, $routeParams, $window, messageFactory){
 
             $scope.articles = $scope.articles || {};
 
@@ -168,6 +168,29 @@
 
             $scope.searchByPermalink = function(permalink){
                 $window.location = '/dashboard/#/showArticle/' + permalink;
+            };
+
+            $scope.updateVisibility = function(id, visibility){
+
+                if(id && id.length){
+
+                    var visible = (visibility == false) ? 0 : 1;
+
+                    var articleContent = {
+                        action:  "updateArticle",
+                        visible: visible,
+                        id:      id
+                    };
+
+                    $http.post("/dashboard/post/", articleContent)
+                        .success(function(data, status, headers, config) {
+                           messageFactory.showMessage(data.textResponse, 1);
+                        }).
+                        error(function(data, status, headers, config) {
+                            messageFactory.showMessage(data.textResponse, 2);
+                        });
+
+                }
             };
         }])
 
