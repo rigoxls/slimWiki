@@ -1,0 +1,59 @@
+<div class="panel-heading">
+    <h3 class="panel-title" id="panel-title">{{pageTitle}}
+        <a class="anchorjs-link" href="#panel-title">
+            <span class="anchorjs-icon"></span>
+        </a>
+    </h3>
+</div>
+<div class="panel-body">
+
+    <info-message></info-message>
+
+    <form name="userForm" method="post" action="/dashboard/post/" enctype="multipart/form-data" novalidate >
+        <div class="fm-elements">
+            <span>Name</span>
+            <input type="text"
+            name="name"
+                ng-model="user.name"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate }"
+                placeholder="Please set your name" required>
+        </div>
+
+        <div class="fm-elements">
+            <input type="file" ng-model="user.photo" accept="image/*" name="imagefile" />
+        </div>
+
+        <div class="fm-elements">
+            <span>Email</span>
+            <input type="email"
+                ng-model="user.email"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate }"
+                placeholder="Please set your email">
+        </div>
+
+        <div class="fm-elements">
+            <span>City</span>
+            <input type="text"
+                ng-model="user.city"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate }"
+                placeholder="Please set your current city">
+        </div>
+
+        <div class="fm-elements">
+            <span>Bio</span>
+            <textarea ng-model="user.bio"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate}"
+                required placeholder="Summarize your bio sample in 100 characters or less" rows="5">
+                </textarea>
+        </div>
+
+        <div class="fm-elements">
+            <button type="submit" class="btn btn-primary pull-right">Save user</button>
+        </div>
+        <input type="hidden" ng-model="user.id">
+    </form>
+</div>
