@@ -9,7 +9,7 @@
 
     <info-message></info-message>
 
-    <form name="userForm" method="post" action="/dashboard/post/" enctype="multipart/form-data" novalidate >
+    <form name="userForm" method="post" ng-submit="submitForm(articleForm.$valid)" novalidate >
         <div class="fm-elements">
             <span>Name</span>
             <input type="text"
@@ -21,7 +21,8 @@
         </div>
 
         <div class="fm-elements">
-            <input type="file" ng-model="user.photo" accept="image/*" name="imagefile" />
+            <input type="file" file="file" required />
+
         </div>
 
         <div class="fm-elements">

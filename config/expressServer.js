@@ -31,7 +31,7 @@ var ExpressServer = function(config){
     this.expressServer.use(multer({
         dest: './public/images/profiles/',
         rename: function(fieldname, filename){
-            return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
+            return filename.replace(/\W+/g, '-').toLowerCase()
         }
     }))
 

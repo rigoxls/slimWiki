@@ -70,6 +70,10 @@ Dashboard.prototype.post = function(req, res, next){
             }
         });
     }
+
+    else if(action === 'updateProfile'){
+        console.info(data);
+    }
 };
 
 module.exports = Dashboard;

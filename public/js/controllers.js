@@ -199,6 +199,44 @@
 
         .controller('userProfile',['$scope', '$http', function($scope, $http){
             console.info('you are in profile');
+            $scope.submitForm = function(isValid) {
+
+                $http({
+                    method: 'POST',
+                    url: '/dashboard/post/',
+                    headers: {
+                        'Content-Type' : 'multipart/form-data'
+                    },
+                    data:{
+                        action: 'updateProfile',
+                        name: $scope.name,
+                        file: $scope.file,
+                        fileName: $scope.file.name.replace(/(\W|\.)+/g, '-').toLowerCase()
+                    },
+                    //emulate a post/ multipart data
+                    transformRequest: function (data, headersGetter) {
+                        var formData = new FormData();
+                        angular.forEach(data, function (value, key) {
+                            formData.append(key, value);
+                        });
+
+                        var headers = headersGetter();
+                        delete headers['Content-Type'];
+
+                        return formData;
+                    }
+                })
+                .success(function(data){
+
+                    console.info('data success');
+                })
+                .error(function (data, status) {
+                    console.error('error')
+                })
+
+
+            }
+
         }])
 
 })();
