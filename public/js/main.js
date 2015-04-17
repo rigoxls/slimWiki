@@ -16,7 +16,11 @@
     app.config(['$routeProvider', function($routeProvider){
         $routeProvider
 
-        .when('/', {
+        .when('/',{
+            redirectTo : '/listArticle/'
+        })
+
+        .when('/createArticle/', {
             templateUrl : '../views/upsert-article.html',
             controller : 'upsertArticleController'
         })
@@ -36,8 +40,13 @@
             controller: 'upsertArticleController'
         })
 
+        .when('/userProfile/',{
+            templateUrl: '../views/profile.html',
+            controller: 'userProfile'
+        })
+
         .otherwise('/',{
-            redirectTo : '/'
+            redirectTo : '/listArticle/' //goes 404, todo
         })
 
     }]);

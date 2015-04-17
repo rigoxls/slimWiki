@@ -12,7 +12,7 @@
             $scope.pageTitle = (key) ? "Update Article" : "Create Article";;
 
             //set panel
-            $scope.panel = "primary";
+            $scope.panel = "";
 
             //if key search article
             if(key){
@@ -195,6 +195,10 @@
 
                 }
             };
+        }])
+
+        .controller('userProfile',['$scope', '$http', function($scope, $http){
+            console.info('you are in profile');
         }])
 
 })();

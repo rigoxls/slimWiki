@@ -1,4 +1,5 @@
 var controllersManager = require('./app/modules/controllers/controllersManager'),
+    conf = require('./config/conf'),
     passport = require('passport');
 
 
@@ -42,7 +43,7 @@ var Routes = function(app){
     //authentication process by attempting to obtain an access token.
     //If access was granted, the user will be logged in . Otherwise, authentication has failed.
     app.expressServer.get('/auth/twitter/callback',
-        passport.authenticate('twitter', { successRedirect: 'http://localhost:5000/dashboard/#/listArticle',
+        passport.authenticate('twitter', { successRedirect: conf.appUrl + 'dashboard/#/',
                                            failureRedirect: '/login' } ));
 
     // Redirect the user to Facebook for authentication.  When complete,
@@ -55,7 +56,7 @@ var Routes = function(app){
     // access was granted, the user will be logged in.  Otherwise,
     // authentication has failed.
     app.expressServer.get('/auth/facebook/callback',
-      passport.authenticate('facebook', { successRedirect: 'http://localhost:5000/dashboard/#/listArticle',
+      passport.authenticate('facebook', { successRedirect: conf.appUrl + 'dashboard/#/',
                                           failureRedirect: '/login' }));
 }
 
