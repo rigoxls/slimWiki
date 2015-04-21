@@ -6,6 +6,16 @@ var UserModel = function(conf){
     this.model = modelUser;
 };
 
+UserModel.prototype.findOne = function(data, callback){
+    this.model.findOne({
+        _id : data.id,
+    },function(err, user){
+        if(err) throw(err);
+        //if user exists in db , return it
+        if(!err && user!=null) return callback(user);
+    })
+};
+
 UserModel.prototype.findOrCreate = function(data, callback){
 
     this.model.findOne({

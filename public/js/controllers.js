@@ -198,10 +198,20 @@
         }])
 
         .controller('userProfile',['$rootScope','$scope', '$http','messageFactory', function($rootScope, $scope, $http, messageFactory){
+
+            $scope.user = $scope.user || {};
+
+            $http.post("/dashboard/post/", {action:"findUser"})
+                .success(function(data, status, headers, config) {
+                   var rUser = data.data;
+                   $scope.user.name = rUser.name;
+                   $scope.user.email = rUser.email !== 'undefined' ? rUser.email : '';
+                   $scope.user.city = rUser.city !== 'undefined' ? rUser.city : '';
+                   $scope.user.bio = rUser.bio !== 'undefined' ? rUser.bio : '';
+                });
+
+
             $scope.submitForm = function(isValid) {
-
-                $scope.user = $scope.user || {};
-
                 //if form is valid
                 if(isValid){
 
@@ -220,9 +230,9 @@
                         data:{
                             action: 'updateProfile',
                             name: $scope.user.name,
-                            email: $scope.user.email,
+                            email:$scope.user.email,
                             city: $scope.user.city,
-                            bio: $scope.user.bio,
+                            bio:  $scope.user.bio,
                             file: $scope.file,
                             fileName: fileName
                         },

@@ -75,9 +75,9 @@ Dashboard.prototype.post = function(req, res, next){
         var userData = {
             id: data.user._id,
             name: data.name,
-            bio: data.bio,
-            city: data.city,
-            email: data.email
+            bio: data.bio || '',
+            city: data.city || '',
+            email: data.email || ''
         };
 
         //case update profile with profile image
@@ -100,7 +100,19 @@ Dashboard.prototype.post = function(req, res, next){
                 self.sendResponse(res, textResponse, doc);
             }
         });
+    }
 
+    else if(action === "findUser"){
+        var userData = {
+            id : data.user._id
+        };
+
+        this.userModel.findOne(userData, function(doc){
+            if(doc){
+                var textResponse = "user gotten";
+                self.sendResponse(res, textResponse, doc);
+            }
+        });
     }
 };
 
