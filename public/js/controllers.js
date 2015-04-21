@@ -190,14 +190,14 @@
                            messageFactory.showMessage(data.textResponse, 1);
                         }).
                         error(function(data, status, headers, config) {
-                            messageFactory.showMessage(data.textResponse, 2);
+                            messageFactory.showMessage('error updating article', 2);
                         });
 
                 }
             };
         }])
 
-        .controller('userProfile',['$scope', '$http', function($scope, $http){
+        .controller('userProfile',['$scope', '$http','messageFactory', function($scope, $http, messageFactory){
             $scope.submitForm = function(isValid) {
 
                 $scope.user = $scope.user || {};
@@ -240,11 +240,10 @@
                         }
                     })
                     .success(function(data){
-
-                        console.info('data success');
+                        messageFactory.showMessage(data.textResponse, 1);
                     })
                     .error(function (data, status) {
-                        console.error('error')
+                        messageFactory.showMessage('error updating profile', 2);
                     })
 
                 }

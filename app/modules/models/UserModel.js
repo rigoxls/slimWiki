@@ -6,7 +6,7 @@ var UserModel = function(conf){
     this.model = modelUser;
 };
 
-UserModel.prototype.findAndUpdate = function(data, callback){
+UserModel.prototype.findOrCreate = function(data, callback){
 
     this.model.findOne({
         provider_id: data.provider_id
@@ -26,6 +26,19 @@ UserModel.prototype.findAndUpdate = function(data, callback){
         });
 
     });
+};
+
+UserModel.prototype.findAndUpdate = function(data, callback){
+    var userId = data.id;
+    delete data.id;
+
+    this.model.findOneAndUpdate({
+        _id: userId
+    },
+    data, { upsert: false }).exec(function(err, doc){
+        callback(doc);
+    });
+
 };
 
 module.exports = UserModel;

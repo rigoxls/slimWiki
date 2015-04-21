@@ -1,14 +1,24 @@
 var conf = require('../../../config/conf'),
     _ = require('underscore'),
     fs = require('fs'),
-    ArticleModel = require('../models/ArticleModel');
+    ArticleModel = require('../models/ArticleModel'),
+    UserModel = require('../models/UserModel');
 
 var Dashboard = function(){
 
     this.model = new ArticleModel();
+    this.userModel = new UserModel();
 
     this.response = function(action, req, res, next){
         this[action](req, res, next);
+    };
+
+    this.sendResponse = function(res, textResponse, doc){
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify( {
+        textResponse: textResponse,
+        data: doc
+      }));
     }
 };
 
@@ -20,6 +30,7 @@ Dashboard.prototype.dashboard = function(req, res, next){
 };
 
 Dashboard.prototype.post = function(req, res, next){
+    var self = this;
     if(!req.body) return false;
     if(!req.body.action) return false;
 
@@ -30,61 +41,66 @@ Dashboard.prototype.post = function(req, res, next){
     if(action === 'createArticle'){
         this.model.insert(data, function(doc){
             if(doc){
-              res.setHeader('Content-Type', 'application/json');
-              res.end(JSON.stringify( {
-                textResponse: "New article saved successfully",
-                data: doc
-              }));
+                var textResponse = "New article saved successfully";
+                self.sendResponse(res, textResponse, doc);
             }
         });
     }
     else if(action === 'updateArticle'){
         this.model.update(data, function(doc){
             if(doc){
-                res.setHeader('Content-type', 'application/json');
-                res.end(JSON.stringify({
-                    textResponse: "Article updated",
-                    data: doc
-                }))
+                var textResponse = "Article updated";
+                self.sendResponse(res, textResponse, doc);
             }
         });
     }
     else if(action === 'findArticle'){
         this.model.findByPermalink(data, function(doc){
             if(doc){
-                res.setHeader('Content-type', 'application/json');
-                res.end(JSON.stringify({
-                    textResponse: _.isEmpty(doc) ? "no article found" : "articles found",
-                    data: doc[0]
-                }));
+                var textResponse = _.isEmpty(doc) ? "No article found" : "articles found";
+                self.sendResponse(res, textResponse, doc);
             }
         });
     }
     else if(action === 'findArticles'){
         this.model.findByKey(data, function(doc){
             if(doc){
-                res.setHeader('Content-type','application/json');
-                res.end(JSON.stringify({
-                    textResponse: _.isEmpty(doc) ? "no articles found" : "articles found",
-                    data: doc
-                }));
+                var textResponse = _.isEmpty(doc) ? "No articles found" : "articles found";
+                self.sendResponse(res, textResponse, doc);
             }
         });
     }
 
     else if(action === 'updateProfile'){
-        console.info(data);
+        var userData = {
+            id: data.user._id,
+            name: data.name,
+            bio: data.bio,
+            city: data.city,
+            email: data.email
+        };
 
         //case update profile with profile image
-        if(data && data.fileName){
+        if(data && data.fileName != 'null' && data.fileName != null){
             var imP = data.fileName;
             var splitImg = imP.split('.');
             var profOldName = conf.imgProf + imP;
-            var newProfName = conf.imgProf + splitImg.slice(0,1) + parseInt(Math.random() * 100) + "." + splitImg.slice(1,2);
+            var cleanImgName = splitImg.slice(0,1) + parseInt(Math.random() * 100) + "." + splitImg.slice(1,2);
+            var newProfName = conf.imgProf + cleanImgName;
 
             //rename image just uploaded
             fs.rename(profOldName, newProfName, function(){});
+            userData.photo = '../images/profiles/' + cleanImgName;
         }
+
+        //update user profile
+        this.userModel.findAndUpdate(userData, function(doc){
+            if(doc){
+                var textResponse = "User profile updated";
+                self.sendResponse(res, textResponse, doc);
+            }
+        });
+
     }
 };
 
