@@ -5,13 +5,15 @@
     <div class="author-container">
         <figure>
             <a href="#">
-                <img class="autor-image" src="[[user.photo]]" width="96" height="96" alt="[[user.name]]">
+                <img class="autor-image" src="[[user.photo]]" width="96" height="96" alt="[[user.name]]" ng-show="!user.photo">
+                <img class="autor-image" ng-src="{{user.photo}}" width="96" height="96" alt="" ng-show="user.photo">
             </a>
         </figure>
 
         <div class="contributor_details">
             <div class="contributor_name">
-                <a href="#">[[user.name]]</a>
+                <a href="#" ng-show="!user.name">[[user.name]]</a>
+                <a href="#" ng-show="user.name">{{user.name}}</a>
                 <p class="article-date">Member since
                     <time datetime="[[user.createdAt]]">
                         {{ "[[user.createdAt]]" | date : 'longDate'}}

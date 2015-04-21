@@ -197,7 +197,7 @@
             };
         }])
 
-        .controller('userProfile',['$scope', '$http','messageFactory', function($scope, $http, messageFactory){
+        .controller('userProfile',['$rootScope','$scope', '$http','messageFactory', function($rootScope, $scope, $http, messageFactory){
             $scope.submitForm = function(isValid) {
 
                 $scope.user = $scope.user || {};
@@ -240,7 +240,11 @@
                         }
                     })
                     .success(function(data){
+                        var lUser = data.data;
+                        $rootScope.user = $rootScope || {};
                         messageFactory.showMessage(data.textResponse, 1);
+                        $rootScope.user.photo = lUser.photo;
+                        $rootScope.user.name = lUser.name;
                     })
                     .error(function (data, status) {
                         messageFactory.showMessage('error updating profile', 2);
