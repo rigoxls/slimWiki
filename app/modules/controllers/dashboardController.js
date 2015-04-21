@@ -1,5 +1,6 @@
 var conf = require('../../../config/conf'),
     _ = require('underscore'),
+    fs = require('fs'),
     ArticleModel = require('../models/ArticleModel');
 
 var Dashboard = function(){
@@ -73,6 +74,17 @@ Dashboard.prototype.post = function(req, res, next){
 
     else if(action === 'updateProfile'){
         console.info(data);
+
+        //case update profile with profile image
+        if(data && data.fileName){
+            var imP = data.fileName;
+            var splitImg = imP.split('.');
+            var profOldName = conf.imgProf + imP;
+            var newProfName = conf.imgProf + splitImg.slice(0,1) + parseInt(Math.random() * 100) + "." + splitImg.slice(1,2);
+
+            //rename image just uploaded
+            fs.rename(profOldName, newProfName, function(){});
+        }
     }
 };
 

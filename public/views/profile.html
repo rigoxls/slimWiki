@@ -9,14 +9,14 @@
 
     <info-message></info-message>
 
-    <form name="userForm" method="post" ng-submit="submitForm(articleForm.$valid)" novalidate >
+    <form name="userForm" method="post" ng-submit="submitForm(userForm.$valid)" novalidate >
         <div class="fm-elements">
             <span>Name</span>
             <input type="text"
             name="name"
                 ng-model="user.name"
                 class="form-control"
-                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate }"
+                ng-class="{ 'ng-dirty' : userForm.$submitted}"
                 placeholder="Please set your name" required>
         </div>
 
@@ -30,7 +30,7 @@
             <input type="email"
                 ng-model="user.email"
                 class="form-control"
-                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate }"
+                ng-class="{ 'ng-dirty' : userForm.$submitted }"
                 placeholder="Please set your email">
         </div>
 
@@ -39,7 +39,7 @@
             <input type="text"
                 ng-model="user.city"
                 class="form-control"
-                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate }"
+                ng-class="{ 'ng-dirty' : userForm.$submitted }"
                 placeholder="Please set your current city">
         </div>
 
@@ -47,8 +47,8 @@
             <span>Bio</span>
             <textarea ng-model="user.bio"
                 class="form-control"
-                ng-class="{ 'ng-dirty' : userForm.$submitted && user.validate}"
-                required placeholder="Summarize your bio sample in 100 characters or less" rows="5">
+                ng-class="{ 'ng-dirty' : userForm.$submitted }"
+                placeholder="Summarize your bio sample in 100 characters or less" rows="5">
                 </textarea>
         </div>
 

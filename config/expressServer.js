@@ -5,6 +5,7 @@ var env = process.env.NODE_ENV || 'production',
     session = require('express-session'),
     passport = require('passport'),
     multer  = require('multer'),
+    conf    = require('./conf.json'),
     middlewares = require('../app/middlewares/admin');
 
     require('./passportConfig')();
@@ -29,9 +30,9 @@ var ExpressServer = function(config){
     this.expressServer.use(passport.session());
 
     this.expressServer.use(multer({
-        dest: './public/images/profiles/',
+        dest: conf.imgProf,
         rename: function(fieldname, filename){
-            return filename.replace(/\W+/g, '-').toLowerCase()
+            return filename.replace(/[^a-zA-Z0-9\.]+/g, '-').toLowerCase()
         }
     }))
 
