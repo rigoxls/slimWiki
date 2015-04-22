@@ -14,7 +14,7 @@
             <p><a class="btn btn-primary btn-lg" href="/dashboard/#/" role="button">Create a new Article</a></p>
     </div>
 
-    <div class="col-sm-12 col-md-4" ng-repeat="article in articles">
+    <div class="col-sm-12 col-md-4 removing" ng-repeat="article in articles" id="a_{{article._id}}">
         <div class="thumbnail">
           <div class="caption caption-list">
             <a href="javascript:void(0)" ng-click="open('sm', article)" class="btn btn-default btn-sm glyphicon glyphicon-trash pull-right"></a>

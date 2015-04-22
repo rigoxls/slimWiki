@@ -38,6 +38,7 @@ ArticleModel.prototype.update = function(data, callback){
     (data.content) ? settedValues.content = data.content : '';
     (data.permalink) ? settedValues.permalink = data.permalink : '';
     (data.tags) ? settedValues.tags = data.tags : '';
+    (data.deleted) ? settedValues.deleted = data.deleted : '';
     settedValues.visible = (data.visible) ? data.visible : 0;
 
     this.model.update(
@@ -57,7 +58,8 @@ ArticleModel.prototype.update = function(data, callback){
 ArticleModel.prototype.findByPermalink = function(data, callback){
 
     var query = {
-       permalink: data.permalink
+       permalink: data.permalink,
+       deleted: false
     };
 
     if(data.user){
@@ -76,6 +78,7 @@ ArticleModel.prototype.findByPermalink = function(data, callback){
 ArticleModel.prototype.findByKey = function(data, callback){
 
     var query = {
+        deleted: false,
         $or:
         [
             { title: new RegExp(data.key, 'i') },
