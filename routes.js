@@ -34,6 +34,11 @@ var Routes = function(app){
         controllers['dashboardController'].response('post', req, res, next);
     });
 
+    app.expressServer.get('/logout/', function(req, res, next){
+        req.logout();
+        res.redirect('/home');
+    });
+
     //redirect the user to twitter for authentication. when complete, twitter
     //will redirect the user back to the application at
     // /auth/twitter/callback
