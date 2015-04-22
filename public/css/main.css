@@ -19,7 +19,7 @@ span.tag{
     cursor: pointer;
 }
 
-a.glyphicon-edit{
+a.glyphicon-edit, a.glyphicon-trash{
     background-image: none;
 }
 

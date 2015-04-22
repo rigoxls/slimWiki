@@ -148,7 +148,7 @@
 
         }])
 
-        .controller('listArticleController', ['$scope', '$http', '$routeParams','$window','messageFactory', function($scope, $http, $routeParams, $window, messageFactory){
+        .controller('listArticleController', ['$scope', '$http', '$routeParams','$window', '$modal', 'messageFactory', function($scope, $http, $routeParams, $window, $modal, messageFactory){
 
             $scope.articles = $scope.articles || {};
 
@@ -195,6 +195,46 @@
 
                 }
             };
+
+            //ui-modal delete article
+            $scope.open = function(size, article){
+                var modalInstance = $modal.open({
+                    templateUrl: '../partials/modal.html',
+                    controller: 'deleteArticleModal',
+                    size: size,
+                    resolve: {
+                        params: function() {
+                            return {
+                                modalTitle: 'Are you sure to delete this article ?',
+                                article: article
+                            }
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function(){
+                    //closed
+                    console.info('in then ...');
+                }, function(){
+                    //dismissed
+                    console.info('dissmissed');
+                });
+            }
+        }])
+
+        .controller('deleteArticleModal', ['$scope', '$modalInstance', 'params', function($scope, $modalInstance, params){
+            $scope.params = params;
+
+            console.info(params);
+
+            $scope.ok = function () {
+              $modalInstance.close();
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+
         }])
 
         .controller('userProfile',['$rootScope','$scope', '$http','messageFactory', function($rootScope, $scope, $http, messageFactory){
