@@ -64,7 +64,7 @@ ArticleModel.prototype.findByPermalink = function(data, callback){
         query.user_id = data.user._id;
     }
 
-    this.model.find(
+    this.model.findOne(
     query,
     function(err, doc){
         if(err) return console.error(err);
