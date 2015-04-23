@@ -9,10 +9,15 @@ h3.panel-title{
 h3.thumbnail-label{
     color:#2e6da4;
     word-break: break-word;
+    max-height: 75px;
+    overflow: hidden;
+    display: inline;
+    margin-bottom: 5px;
 }
 
 div.caption p{
     font-size: 15px;
+    margin-top: 10px;
 }
 
 span.tag{
