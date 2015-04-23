@@ -7,6 +7,42 @@
             }
         })
 
+        .directive('commentsForm', ['slimWikiService', function(slimWikiService){
+            return {
+                restrict: 'E',
+                templateUrl: '../partials/comments.html',
+                scope: {
+                },
+                link: function(scope, el, attrs){
+
+                },
+                controller: function ($scope) {
+                    $scope.submitForm = function(isValid){
+                        if(isValid){
+                            var commentObject = {
+                                name: $scope.user.name,
+                                email: $scope.user.email,
+                                comment: $scope.user.comment,
+                            };
+
+                            slimWikiService.saveComment(commentObject)
+                                .then(function(promise){
+                                    console.info('Promise: returned');
+                                    console.info(promise);
+                                }, function(err){
+                                    console.info('Promise : Error returned');
+                                    console.info(err);
+                                })
+                        }
+                    };
+
+                    $scope.deleteMessage = function(){
+
+                    }
+                }
+            }
+        }])
+
         .directive('inputFile', function () {
             return {
                 restrict: 'E',

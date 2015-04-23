@@ -127,4 +127,9 @@ p.article-date{
         top: 110px;
         max-width:202px;
     }
+
+    div.comments-form{
+        width: 65%;
+        margin-top: 30px;
+    }
 }

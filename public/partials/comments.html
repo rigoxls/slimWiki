@@ -1,0 +1,39 @@
+<hr></hr>
+<div class="comments-form">
+    <h3>Comments</h3>
+    <form name="commentForm" method="post" ng-submit="submitForm(commentForm.$valid)" novalidate >
+        <div class="fm-elements">
+            <span>Name</span>
+            <input type="text"
+            name="name"
+                ng-model="user.name"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : commentForm.$submitted}"
+                placeholder="Please set your name" required>
+        </div>
+
+
+        <div class="fm-elements">
+            <span>Email</span>
+            <input type="email"
+                ng-model="user.email"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : commentForm.$submitted }"
+                placeholder="Please set your email" required>
+        </div>
+
+        <div class="fm-elements">
+            <span>Comment</span>
+            <textarea ng-model="user.comment"
+                class="form-control"
+                ng-class="{ 'ng-dirty' : commentForm.$submitted }"
+                placeholder="Write your comment " rows="5" required>
+            </textarea>
+        </div>
+
+        <div class="fm-elements">
+            <button type="submit" class="btn btn-primary pull-right">Send Comment</button>
+        </div>
+        <input type="hidden" ng-model="user.id">
+    </form>
+</div>

@@ -114,6 +114,11 @@ Dashboard.prototype.post = function(req, res, next){
             }
         });
     }
+
+    else if(action === "saveComment"){
+        var textResponse = "comment saved !!!!!!!!!!!!!!!!!!!!!";
+        self.sendResponse(res, textResponse, {});
+    }
 };
 
 module.exports = Dashboard;
