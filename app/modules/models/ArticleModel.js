@@ -1,10 +1,12 @@
 var modelArticle = require('./schema/articleSchema'),
+    modelUser = require('./schema/userSchema'),
     validator = require('validator'),
     mongoose = require('mongoose');
 
 var ArticleModel = function(conf){
     conf = conf || {};
     this.model = modelArticle;
+    this.userModel = modelUser;
 };
 
 ArticleModel.prototype.insert = function(data, callback){
@@ -68,7 +70,7 @@ ArticleModel.prototype.addComment = function(data, callback){
     {
         $push: {
             'comments':{
-                user_id: data.user._id,
+                user: data.user._id,
                 comment: validator.escape(data.comment),
                 date: Date.now()
             }
@@ -82,6 +84,7 @@ ArticleModel.prototype.addComment = function(data, callback){
 
 ArticleModel.prototype.findByPermalink = function(data, callback){
 
+    var self = this;
     var query = {
        permalink: data.permalink,
        deleted: false
@@ -95,7 +98,9 @@ ArticleModel.prototype.findByPermalink = function(data, callback){
     query,
     function(err, doc){
         if(err) return console.error(err);
-           callback(doc);
+            self.userModel.populate(doc, {path:"comments.user"}, function(err, doc){
+                callback(doc);
+            })
         }
     );
 };

@@ -125,6 +125,7 @@
                 .success(function(data, status, headers, config){
 
                     var article = data.data;
+                    console.info(data);
 
                     $scope.article.id = article._id;
                     $scope.article.title = article.title;

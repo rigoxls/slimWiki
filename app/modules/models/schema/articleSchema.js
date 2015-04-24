@@ -14,7 +14,7 @@ var ArticleSchema = new Schema({
     edited_at: { type: Date, default: Date.now },
     tags : [],
     comments: {
-        user_id: { type: Schema.ObjectId, ref: "User" },
+        user: { type: Schema.ObjectId, ref: "User" },
         comment: String,
         date: Date
     }
