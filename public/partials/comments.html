@@ -1,7 +1,7 @@
 <hr></hr>
 <div class="comments-form">
     <h3>Comments</h3>
-    <form name="commentForm" method="post" ng-submit="submitForm(commentForm.$valid)" novalidate >
+    <form name="commentForm" method="post" ng-model="articleId" ng-submit="submitForm(commentForm.$valid)" novalidate >
         <div class="fm-elements">
             <span>Name</span>
             <input type="text"
@@ -34,6 +34,5 @@
         <div class="fm-elements">
             <button type="submit" class="btn btn-primary pull-right">Send Comment</button>
         </div>
-        <input type="hidden" ng-model="user.id">
     </form>
 </div>

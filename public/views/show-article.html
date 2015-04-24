@@ -10,12 +10,12 @@
     </p>
 
     <div ng-bind-html="article.content"></div>
-    <!-- waning, success, default , primary -->
+    <!-- warning, success, default , primary -->
 
     <div class="bootstrap-tagsinput">
         <span class="tag label label-primary label-important" ng-repeat="tag in article.tags">{{ tag }}</span>
     </div>
 
-    <comments-form></comments-form>
+    <comments-form article-id="{{article.id}}"></comments-form>
 
 </div>

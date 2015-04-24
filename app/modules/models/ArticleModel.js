@@ -1,4 +1,5 @@
 var modelArticle = require('./schema/articleSchema'),
+    validator = require('validator'),
     mongoose = require('mongoose');
 
 var ArticleModel = function(conf){
@@ -29,7 +30,7 @@ ArticleModel.prototype.insert = function(data, callback){
 
 ArticleModel.prototype.update = function(data, callback){
     //this.model.findOneAndUpdate(query, updateDate, options, function(err, doc)
-    var id = data.id;
+    var articleId = data.id;
     var options = { multi: false, upsert: false };
     var settedValues = {};
 
@@ -43,7 +44,7 @@ ArticleModel.prototype.update = function(data, callback){
 
     this.model.update(
     {
-        _id     : data.id,
+        _id     : articleId,
         user_id : data.user._id //important, just update own article
     },
     {
@@ -53,7 +54,31 @@ ArticleModel.prototype.update = function(data, callback){
     function(err, doc){
         callback(doc);
     });
-}
+};
+
+ArticleModel.prototype.addComment = function(data, callback){
+
+    var articleId = data.articleId;
+    var options = {multi: false, upsert: false };
+
+    this.model.update(
+    {
+        _id: articleId
+    },
+    {
+        $push: {
+            'comments':{
+                user_id: data.user._id,
+                comment: validator.escape(data.comment),
+                date: Date.now()
+            }
+        }
+    }
+    ,options,
+    function(err, doc){
+        callback(doc)
+    })
+};
 
 ArticleModel.prototype.findByPermalink = function(data, callback){
 

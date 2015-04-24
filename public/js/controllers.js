@@ -126,6 +126,7 @@
 
                     var article = data.data;
 
+                    $scope.article.id = article._id;
                     $scope.article.title = article.title;
                     $scope.article.content = article.content;
                     $scope.article.tags = article.tags;

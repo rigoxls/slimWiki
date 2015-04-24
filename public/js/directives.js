@@ -12,14 +12,14 @@
                 restrict: 'E',
                 templateUrl: '../partials/comments.html',
                 scope: {
+                    articleId: '@articleId'
                 },
-                link: function(scope, el, attrs){
-
-                },
+                link: function(scope, el, attrs){},
                 controller: function ($scope) {
                     $scope.submitForm = function(isValid){
                         if(isValid){
                             var commentObject = {
+                                articleId: $scope.articleId,
                                 name: $scope.user.name,
                                 email: $scope.user.email,
                                 comment: $scope.user.comment,

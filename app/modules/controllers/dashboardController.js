@@ -109,15 +109,24 @@ Dashboard.prototype.post = function(req, res, next){
 
         this.userModel.findOne(userData, function(doc){
             if(doc){
-                var textResponse = "user gotten";
+                var textResponse = "User gotten";
                 self.sendResponse(res, textResponse, doc);
             }
         });
     }
 
     else if(action === "saveComment"){
-        var textResponse = "comment saved !!!!!!!!!!!!!!!!!!!!!";
-        self.sendResponse(res, textResponse, {});
+        if(!data.articleId){
+           var textResponse = "Article not found";
+           self.sendResponse(res, textResponse, {});
+        }else{
+            this.model.addComment(data, function(doc){
+                if(doc){
+                    var textResponse = "Comment saved";
+                    self.sendResponse(res, textResponse, doc);
+                }
+            });
+        }
     }
 };
 
