@@ -12,10 +12,20 @@
                 restrict: 'E',
                 templateUrl: '../partials/comments.html',
                 scope: {
-                    articleId: '@articleId'
+                    articleId: '@articleId',
+                    permalink: '@permalink'
                 },
                 link: function(scope, el, attrs){},
                 controller: function ($scope) {
+
+                    slimWikiService.getComments($scope.permalink)
+                        .then(function(promise){
+                            console.info(promise);
+                        }, function(err){
+                            console.info(err);
+                        })
+
+
                     $scope.submitForm = function(isValid){
                         if(isValid){
                             var commentObject = {

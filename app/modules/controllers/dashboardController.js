@@ -13,11 +13,12 @@ var Dashboard = function(){
         this[action](req, res, next);
     };
 
-    this.sendResponse = function(res, textResponse, doc){
+    this.sendResponse = function(res, textResponse, doc, cUser){
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify( {
         textResponse: textResponse,
-        data: doc
+        data: doc,
+        cUser: cUser
       }));
     }
 };
@@ -42,7 +43,7 @@ Dashboard.prototype.post = function(req, res, next){
         this.model.insert(data, function(doc){
             if(doc){
                 var textResponse = "New article saved successfully";
-                self.sendResponse(res, textResponse, doc);
+                self.sendResponse(res, textResponse, doc, data.user);
             }
         });
     }
@@ -50,7 +51,7 @@ Dashboard.prototype.post = function(req, res, next){
         this.model.update(data, function(doc){
             if(doc){
                 var textResponse = "Article updated";
-                self.sendResponse(res, textResponse, doc);
+                self.sendResponse(res, textResponse, doc, data.user);
             }
         });
     }
@@ -58,7 +59,8 @@ Dashboard.prototype.post = function(req, res, next){
         this.model.findByPermalink(data, function(doc){
             if(doc){
                 var textResponse = _.isEmpty(doc) ? "No article found" : "articles found";
-                self.sendResponse(res, textResponse, doc);
+                currentUser = data.user;
+                self.sendResponse(res, textResponse, doc, data.user);
             }
         });
     }
@@ -66,7 +68,7 @@ Dashboard.prototype.post = function(req, res, next){
         this.model.findByKey(data, function(doc){
             if(doc){
                 var textResponse = _.isEmpty(doc) ? "No articles found" : "articles found";
-                self.sendResponse(res, textResponse, doc);
+                self.sendResponse(res, textResponse, doc, data.user);
             }
         });
     }
@@ -97,7 +99,7 @@ Dashboard.prototype.post = function(req, res, next){
         this.userModel.findAndUpdate(userData, function(doc){
             if(doc){
                 var textResponse = "User profile updated";
-                self.sendResponse(res, textResponse, doc);
+                self.sendResponse(res, textResponse, doc, data.user);
             }
         });
     }
@@ -110,7 +112,7 @@ Dashboard.prototype.post = function(req, res, next){
         this.userModel.findOne(userData, function(doc){
             if(doc){
                 var textResponse = "User gotten";
-                self.sendResponse(res, textResponse, doc);
+                self.sendResponse(res, textResponse, doc, data.user);
             }
         });
     }
@@ -123,7 +125,21 @@ Dashboard.prototype.post = function(req, res, next){
             this.model.addComment(data, function(doc){
                 if(doc){
                     var textResponse = "Comment saved";
-                    self.sendResponse(res, textResponse, doc);
+                    self.sendResponse(res, textResponse, doc, data.user);
+                }
+            });
+        }
+    }
+
+    else if(action === "getComments"){
+        if(!data.articleId){
+           var textResponse = "Article not found";
+           self.sendResponse(res, textResponse, {});
+        }else{
+            this.model.getComments(data, function(doc){
+                if(doc){
+                    var textResponse = "Comments returned";
+                    self.sendResponse(res, textResponse, doc, data.user);
                 }
             });
         }

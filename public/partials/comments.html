@@ -3,27 +3,28 @@
     <h3>Comments</h3>
     <form name="commentForm" method="post" ng-model="articleId" ng-submit="submitForm(commentForm.$valid)" novalidate >
         <div class="fm-elements">
-            <span>Name</span>
+            <span ng-hide="currentUser">Name</span>
             <input type="text"
-            name="name"
+                name="name"
                 ng-model="user.name"
+                ng-hide="currentUser"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted}"
                 placeholder="Please set your name" required>
         </div>
 
-
         <div class="fm-elements">
-            <span>Email</span>
+            <span ng-hide="currentUser">Email</span>
             <input type="email"
                 ng-model="user.email"
+                ng-hide="currentUser"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted }"
                 placeholder="Please set your email" required>
         </div>
 
         <div class="fm-elements">
-            <span>Comment</span>
+            <span ng-hide="currentUser">Comment</span>
             <textarea ng-model="user.comment"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted }"
@@ -35,4 +36,20 @@
             <button type="submit" class="btn btn-primary pull-right">Send Comment</button>
         </div>
     </form>
+</div>
+
+<div class="show-comments">
+    <div class="alone-comment">
+        <hr></hr>
+        <figure>
+            <a href="#">
+                <img class="autor-image" src="../images/profiles/cara151.jpg" width="40" height="40" alt="">
+            </a>
+        </figure>
+        <div class="content">
+            <div><strong>rigoberto giraldo</strong></div>
+            Thank you for your solution. As you mention it does not quite satisfy my needs, but it is a mentionworthy approach, and someone else will probably put it to good use
+        </div>
+    </div>
+
 </div>

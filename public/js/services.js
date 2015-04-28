@@ -4,9 +4,23 @@
         .factory('slimWikiService',['$http', '$q', function($http, $q){
             var factory = {};
 
-            factory.getComments = function(){
-                //here we need to get messages
-                console.info('messages gotten');
+            factory.getComments = function(permalink){
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                var cObject = {};
+
+                cObject.action = 'findArticle';
+                cObject.permalink = permalink;
+
+                $http.post('/dashboard/post/', cObject)
+                    .success(function(data){
+                        deferred.resolve(data);
+                    })
+                    .error(function(e){
+                        deferred.reject(e);
+                    });
+
+                return promise;
             };
 
             factory.saveComment = function(comment){

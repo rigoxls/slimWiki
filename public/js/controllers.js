@@ -107,8 +107,8 @@
 
         }])
 
-        .controller('showArticleController', ['$scope', '$http', '$routeParams', '$sce', '$window','$timeout',
-            function($scope, $http, $routeParams, $sce, $window, $timeout){
+        .controller('showArticleController', ['$scope', '$rootScope', '$http', '$routeParams', '$sce', '$window','$timeout',
+            function($scope, $rootScope, $http, $routeParams, $sce, $window, $timeout){
 
             if(!$routeParams.permalink){
                 //redirect to 404 page TODO
@@ -125,9 +125,9 @@
                 .success(function(data, status, headers, config){
 
                     var article = data.data;
-                    console.info(data);
 
                     $scope.article.id = article._id;
+                    $scope.article.permalink = article.permalink;
                     $scope.article.title = article.title;
                     $scope.article.content = article.content;
                     $scope.article.tags = article.tags;
@@ -214,13 +214,7 @@
                     }
                 });
 
-                modalInstance.result.then(function(){
-                    //closed
-                    console.info('in then ...');
-                }, function(){
-                    //dismissed
-                    console.info('dissmissed');
-                });
+                modalInstance.result.then(function(){  /*closed*/ }, function(){ /*dismissed*/ });
             }
         }])
 
