@@ -58,7 +58,7 @@ Dashboard.prototype.post = function(req, res, next){
     else if(action === 'findArticle'){
         this.model.findByPermalink(data, function(doc){
             if(doc){
-                var textResponse = _.isEmpty(doc) ? "No article found" : "articles found";
+                var textResponse = _.isEmpty(doc) ? "No article found" : "article found";
                 currentUser = data.user;
                 self.sendResponse(res, textResponse, doc, data.user);
             }

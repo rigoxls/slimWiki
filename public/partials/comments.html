@@ -39,7 +39,7 @@
 </div>
 
 <div class="show-comments">
-    <div class="alone-comment">
+    <div class="alone-comment" ng-repeat="comment in comments">
         <hr></hr>
         <figure>
             <a href="#">
@@ -47,8 +47,13 @@
             </a>
         </figure>
         <div class="content">
-            <div><strong>rigoberto giraldo</strong></div>
-            Thank you for your solution. As you mention it does not quite satisfy my needs, but it is a mentionworthy approach, and someone else will probably put it to good use
+            <div>
+                <strong>{{comment.user.name || 'Anonymous'}}</strong>
+                <time class="comments" datetime="{{article.createdAt}}" pubdate="">
+                    {{ comment.date | date : 'fullDate'}}
+                </time>
+            </div>
+            {{comment.comment}}
         </div>
     </div>
 

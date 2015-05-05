@@ -116,6 +116,12 @@ p.article-date{
     animation: fadeOut 5000ms;
 }
 
+time.comments{
+    float: right;
+    font-size: 11px;
+    color: #555;
+}
+
 @media screen and (min-width: 768px){
     .jumbotron .h1, .jumbotron h1 {
         font-size: 50px !important;

@@ -20,7 +20,16 @@
 
                     slimWikiService.getComments($scope.permalink)
                         .then(function(promise){
-                            console.info(promise);
+                            if(promise.data.comments){
+                                $scope.comments = promise.data.comments;
+                                promise.data.comments.sort(function(a, b){
+                                    if(a.date > b.date){
+                                        return -1;
+                                    }else{
+                                        return 1
+                                    }
+                                });
+                            }
                         }, function(err){
                             console.info(err);
                         })
