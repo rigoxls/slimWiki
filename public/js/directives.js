@@ -12,8 +12,8 @@
                 restrict: 'E',
                 templateUrl: '../partials/comments.html',
                 scope: {
-                    articleId: '@articleId',
-                    permalink: '@permalink'
+                    permalink: '@permalink',
+                    currentUser: '@currentuser'
                 },
                 link: function(scope, el, attrs){},
                 controller: function ($scope) {

@@ -132,6 +132,7 @@
                     $scope.article.content = article.content;
                     $scope.article.tags = article.tags;
                     $scope.article.createdAt = article.created_at;
+                    $scope.article.currentUser = article.user_id;
 
                 })
                 .error(function(data, status, headers, config){
