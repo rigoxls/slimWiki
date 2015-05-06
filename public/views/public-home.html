@@ -1,0 +1,19 @@
+<div class="panel-body">
+    <info-message></info-message>
+    <h2 ng-show="!articles.none">
+        Latest Articles
+    </h2>
+
+    <div class="col-sm-12 col-md-4 removing" ng-repeat="article in articles" id="a_{{article._id}}">
+        <div class="thumbnail">
+          <div class="caption caption-list home-caption">
+            <h3 class="thumbnail-label cursor-pointer" ng-click="searchByPermalink(article.permalink)">{{ article.title }}</h3>
+            <p class="cursor-pointer" ng-click="searchByPermalink(article.permalink)">{{article.description | limitTo:100}} ... </p>
+            <div class="bootstrap-tagsinput">
+                <span class="tag label label-danger label-important"
+                    ng-click="searchByTag(tag)" ng-repeat="tag in article.tags">{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

@@ -35,6 +35,8 @@ a.glyphicon-edit, a.glyphicon-trash{
 .container .jumbotron{
     margin-top: 15px;
 }
+
+
 .container .author-container{
     position: relative;
     text-align: center;
@@ -46,6 +48,10 @@ a.glyphicon-edit, a.glyphicon-trash{
 .caption-list{
     height: 270px;
 }
+
+.home-caption{
+    height: 190px !important;
+}}
 
 .cursor-pointer{
     cursor: pointer;
@@ -122,6 +128,16 @@ time.comments{
     color: #555;
 }
 
+div.login-buttons{
+    z-index: 100;
+    background-color: #FFFFFF;
+}
+
+a.btn-twitter{
+    background: #3B94D9;
+    border-color: #3B94D9;
+}
+
 @media screen and (min-width: 768px){
     .jumbotron .h1, .jumbotron h1 {
         font-size: 50px !important;
@@ -129,6 +145,11 @@ time.comments{
 
     .container .jumbotron{
         margin-left: 150px;
+    }
+
+    .container .jumbotron.normal{
+        margin-left: 0px !important;
+        margin-top: 10px;
     }
 
     .container .author-container{

@@ -2,14 +2,56 @@
 
 {% block content %}
 
-   <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Boilerplate project</h1>
-            <p>Basic template project to start quick test, and applications</p>
-            <a class="btn btn-primary btn-lg" href="/auth/twitter">Login with Twitter</a>
-            <a class="btn btn-primary btn-lg" href="/auth/facebook">Login with Facebook</a>
+    {% if user %}
+    <div class="author-container">
+        <figure>
+            <a href="#">
+                <img class="autor-image" src="[[user.photo]]" width="96" height="96" alt="[[user.name]]" ng-show="!user.photo">
+                <img class="autor-image" ng-src="{{user.photo}}" width="96" height="96" alt="" ng-show="user.photo">
+            </a>
+        </figure>
+
+
+        <div class="contributor_details">
+            <div class="contributor_name">
+                <a href="#" ng-show="!user.name">[[user.name]]</a>
+                <a href="#" ng-show="user.name">{{user.name}}</a>
+                <p class="article-date">Member since
+                    <time datetime="[[user.createdAt]]">
+                        {{ "[[user.createdAt]]" | date : 'longDate'}}
+                    </time>
+                </p>
+
+            </div>
         </div>
     </div>
+    {% endif %}
+
+    <div class="login-buttons">
+        <a class="btn btn-primary btn-lg btn-twitter" href="/auth/twitter">Login Twitter</a>
+        <a class="btn btn-primary btn-lg" href="/auth/facebook">Login Facebook</a>
+    </div>
+
+    <div class="jumbotron normal">
+        <div class="panel panel-{{panel}}" ng-view>
+        </div>
+    </div>
+
+    <!-- hightlight sintax -->
+    <link rel="stylesheet" href="../css/default.min.css">
+    <script src="../libs/highlight.min.js"></script>
+
+
+    <script src="../libs/angular.min.js"></script>
+    <script src="../libs/angular-route.min.js"></script>
+    <script src="../libs/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../libs/ng-tags-input/ng-tags-input.min.js"></script>
+    <script src="../libs/ui-bootstrap-custom-tpls-0.12.1.min.js"></script>
+
+    <script src="../js/public_controllers.js"></script>
+    <script src="../js/directives.js"></script>
+    <script src="../js/filters.js"></script>
+    <script src="../js/services.js"></script>
+    <script src="../js/public_main.js"></script>
 
 {% endblock %}
