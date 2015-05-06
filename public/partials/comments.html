@@ -10,7 +10,7 @@
                 ng-hide="currentUser"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted}"
-                placeholder="Please set your name" required>
+                placeholder="Please set your name" ng-if="!currentUser" required>
         </div>
 
         <div class="fm-elements">
@@ -20,7 +20,7 @@
                 ng-hide="currentUser"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted }"
-                placeholder="Please set your email" required>
+                placeholder="Please set your email" ng-if="!currentUser" required>
         </div>
 
         <div class="fm-elements">
@@ -43,7 +43,7 @@
         <hr></hr>
         <figure>
             <a href="#">
-                <img class="autor-image" src="../images/profiles/cara151.jpg" width="40" height="40" alt="">
+                <img class="autor-image" ng-src="{{ comment.user.photo || '../images/profiles/no_user_photo.png' }}" width="40" height="40" alt="">
             </a>
         </figure>
         <div class="content">

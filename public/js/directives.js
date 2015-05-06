@@ -12,28 +12,34 @@
                 restrict: 'E',
                 templateUrl: '../partials/comments.html',
                 scope: {
+                    articleId: '@articleId',
                     permalink: '@permalink',
                     currentUser: '@currentuser'
                 },
                 link: function(scope, el, attrs){},
-                controller: function ($scope) {
+                controller: function ($scope, $window) {
 
-                    slimWikiService.getComments($scope.permalink)
-                        .then(function(promise){
-                            if(promise.data.comments){
-                                $scope.comments = promise.data.comments;
-                                promise.data.comments.sort(function(a, b){
-                                    if(a.date > b.date){
-                                        return -1;
-                                    }else{
-                                        return 1
-                                    }
-                                });
-                            }
-                        }, function(err){
-                            console.info(err);
-                        })
+                    $scope.getComments = function(){
+                        if(!$scope.permalink){
+                            $scope.permalink = $window.location.hash.replace(/#\/showArticle\//g,'');
+                        }
 
+                        slimWikiService.getComments($scope.permalink)
+                            .then(function(promise){
+                                if(promise.data.comments){
+                                    $scope.comments = promise.data.comments;
+                                    promise.data.comments.sort(function(a, b){
+                                        if(a.date > b.date){
+                                            return -1;
+                                        }else{
+                                            return 1
+                                        }
+                                    });
+                                }
+                            }, function(err){
+                                console.info(err);
+                            });
+                    };
 
                     $scope.submitForm = function(isValid){
                         if(isValid){
@@ -46,8 +52,8 @@
 
                             slimWikiService.saveComment(commentObject)
                                 .then(function(promise){
-                                    console.info('Promise: returned');
-                                    console.info(promise);
+                                    $scope.getComments();
+                                    $scope.user.name = $scope.user.email = $scope.user.comment = '';
                                 }, function(err){
                                     console.info('Promise : Error returned');
                                     console.info(err);
@@ -55,9 +61,9 @@
                         }
                     };
 
-                    $scope.deleteMessage = function(){
+                    $scope.deleteMessage = function(){};
 
-                    }
+                    $scope.getComments();
                 }
             }
         }])
