@@ -107,7 +107,9 @@ ArticleModel.prototype.findByPermalink = function(data, callback){
     function(err, doc){
         if(err) return console.error(err);
             self.userModel.populate(doc, {path:"comments.user"}, function(err, doc){
-                callback(doc);
+                self.userModel.populate(doc, {path:"user_id"}, function(err, doc){
+                    callback(doc);
+                })
             })
         }
     );

@@ -57,6 +57,9 @@
                     $scope.article.tags = article.tags;
                     $scope.article.createdAt = article.created_at;
                     $scope.currentUser = data.cUser || null;
+                    $scope.author = article.user_id;
+
+                    console.info($scope.author);
 
                 })
                 .error(function(data, status, headers, config){

@@ -3,12 +3,26 @@
         {{ article.title }}
     </h1>
 
+
+    <div class="public-author-container">
+        <figure>
+            <a href="#">
+                <img class="autor-image" ng-src="{{author.photo}}" width="70" height="70" alt="" ng-show="author.photo">
+            </a>
+        </figure>
+
+        <div class="contributor_details">
+            <div class="contributor_name">
+                <a href="#">{{author.name}}</a>
+            </div>
+        </div>
+    </div>
+
     <p class="article-date">Published
         <time datetime="{{article.createdAt}}" pubdate="">
             {{ article.createdAt | date : 'fullDate'}}
         </time>
     </p>
-
     <div ng-bind-html="article.content"></div>
     <!-- warning, success, default , primary -->
 
