@@ -63,18 +63,26 @@ ArticleModel.prototype.addComment = function(data, callback){
     var articleId = data.articleId;
     var options = {multi: false, upsert: false };
 
+    var find_query = {};
+    find_query.comments = {
+        comment: validator.escape(data.comment),
+        date: Date.now()
+    }
+
+    //if user set it, otherwise not
+    if(data.user){
+        find_query.comments.user = data.user._id
+    }else{
+        find_query.comments.name = data.name;
+        find_query.comments.email = data.email;
+    }
+
     this.model.update(
     {
         _id: articleId
     },
     {
-        $push: {
-            'comments':{
-                user: data.user._id,
-                comment: validator.escape(data.comment),
-                date: Date.now()
-            }
-        }
+        $push: find_query
     }
     ,options,
     function(err, doc){

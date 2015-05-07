@@ -42,6 +42,7 @@
                     };
 
                     $scope.submitForm = function(isValid){
+
                         if(isValid){
                             var commentObject = {
                                 articleId: $scope.articleId,

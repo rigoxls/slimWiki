@@ -10,7 +10,7 @@
                 ng-hide="currentUser"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted}"
-                placeholder="Please set your name" ng-if="!currentUser" required>
+                placeholder="Please set your name" ng-show="!currentUser" ng-required="!currentUser">
         </div>
 
         <div class="fm-elements">
@@ -20,7 +20,7 @@
                 ng-hide="currentUser"
                 class="form-control"
                 ng-class="{ 'ng-dirty' : commentForm.$submitted }"
-                placeholder="Please set your email" ng-if="!currentUser" required>
+                placeholder="Please set your email" ng-show="!currentUser" ng-required="!currentUser">
         </div>
 
         <div class="fm-elements">
@@ -48,7 +48,7 @@
         </figure>
         <div class="content">
             <div>
-                <strong>{{comment.user.name || 'Anonymous'}}</strong>
+                <strong>{{comment.user.name || comment.name }}</strong>
                 <time class="comments" datetime="{{article.createdAt}}" pubdate="">
                     {{ comment.date | date : 'fullDate'}}
                 </time>

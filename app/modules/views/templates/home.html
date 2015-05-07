@@ -2,10 +2,13 @@
 
 {% block content %}
 
+<!-- hide login buttons in case user loggued -->
+{% if user == null %}
     <div class="login-buttons">
         <a class="btn btn-primary btn-lg btn-twitter" href="/auth/twitter">Login Twitter</a>
         <a class="btn btn-primary btn-lg" href="/auth/facebook">Login Facebook</a>
     </div>
+{% endif %}
 
     <div class="jumbotron normal">
         <div class="panel panel-{{panel}}" ng-view>

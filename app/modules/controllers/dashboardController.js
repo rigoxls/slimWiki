@@ -118,6 +118,7 @@ Dashboard.prototype.post = function(req, res, next){
     }
 
     else if(action === "saveComment"){
+
         if(!data.articleId){
            var textResponse = "Article not found";
            self.sendResponse(res, textResponse, {});
