@@ -1,11 +1,11 @@
-(function(){
+(function(w){
     'use strict';
 
     var app = angular.module('slimWiki', [
         'ngSanitize', //to treat html responses that are not safe, use $sce to safe html
         'ngRoute',
         'ui.bootstrap',
-        'slimWiki.public_controllers',
+        'slimWiki.controllers',
         'slimWiki.directives',
         'slimWiki.filters',
         'slimWiki.services'
@@ -34,4 +34,7 @@
 
     }]);
 
-})();
+    app.controllers = angular.module('slimWiki.controllers',[]);
+    w.slimWiki = app;
+
+})(window);

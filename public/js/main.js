@@ -1,4 +1,4 @@
-(function(){
+(function(w){
     'use strict';
 
     var app = angular.module('slimWiki', [
@@ -42,7 +42,7 @@
 
         .when('/userProfile/',{
             templateUrl: '../views/profile.html',
-            controller: 'userProfile'
+            controller: 'userProfileController'
         })
 
         .otherwise('/',{
@@ -51,4 +51,7 @@
 
     }]);
 
-})();
+    app.controllers = angular.module('slimWiki.controllers',[]);
+    w.slimWiki = app;
+
+})(window);
