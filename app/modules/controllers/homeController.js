@@ -1,8 +1,8 @@
 var conf = require('../../../config/conf'),
-           UserModel = require('../models/UserModel');
+           dbService = require('../services/dbService');
 
 var Home = function(){
-    this.model = new UserModel();
+    this.dbService = new dbService();
 
     this.response = function(action, req, res, next){
         this[action](req, res, next);
@@ -10,12 +10,22 @@ var Home = function(){
 };
 
 Home.prototype.home = function(req, res, next){
-    var object = {
-        user: req.user,
-        topics: ['php','js','node','mysql','html']
-    };
-    console.info(object);
-    res.render('home', object);
+
+    var topics = [];
+
+    this.dbService['getTopics']({}, function(resData){
+        if(resData){
+            topics = resData.doc;
+            var object = {
+                user: req.user,
+                topics: topics
+            };
+            console.info(object);
+            res.render('home', object);
+        }else{
+            console.log('something wrong has happened, calling the service !');
+        }
+    });
 }
 
 module.exports = Home;

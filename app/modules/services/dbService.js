@@ -54,6 +54,17 @@ DbService.prototype.findArticles = function(data, callback){
     });
 };
 
+DbService.prototype.getTopics = function(data, callback){
+    this.articleModel.getTopics(data, function(doc){
+        if(doc){
+            var textResponse = _.isEmpty(doc) ? "No topics found" : "Topics found";
+            callback({ doc: doc, textResponse: textResponse});
+        }else{
+            callback(null);
+        }
+    })
+};
+
 DbService.prototype.updateProfile = function(data, callback){
     var userData = {
         id: data.user._id,

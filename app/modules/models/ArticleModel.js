@@ -9,6 +9,37 @@ var ArticleModel = function(conf){
     this.userModel = modelUser;
 };
 
+ArticleModel.prototype.getTopics = function(data, callback){
+
+
+this.model.aggregate([
+    //dont want count with articles deleted
+    {"$match": { "deleted": false } },
+    /* unwind by tags */
+    {"$unwind":"$tags"},
+    /* now group by tags, counting each tag */
+    {"$group":
+     {"_id":"$tags",
+      "count":{$sum:1}
+     }
+    },
+    /* sort by popularity */
+    {"$sort":{"count":-1}},
+    /* show me the top 10 */
+    {"$limit": 10},
+    /* change the name of _id to be tag */
+    {"$project":
+     {_id:0,
+      'topic':'$_id',
+      'count' : 1
+     }
+    }
+    ], function(err, doc){
+        if(err) return console.error(err);
+        callback(doc);
+    })
+};
+
 ArticleModel.prototype.insert = function(data, callback){
 
     var predefinedData = {
