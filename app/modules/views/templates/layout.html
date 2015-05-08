@@ -48,8 +48,21 @@
                </form>
                <ul class="nav navbar-nav navbar-right">
                    <li class="active"><a href="/#/home/">Wikis</a></li>
-                   <li><a href="/#/topics/">Topics</a></li>
-                       {% if user %}
+
+                   <li class="dropdown" dropdown>
+                       <a href="#" dropdown-toggle>
+                           Topics <b class="caret"></b>
+                       </a>
+
+                       <ul class="dropdown-menu" role="menu">
+                       {% for topic in topics %}
+                           <li><a href="/dashboard/#/listArticle/">[[topic]]</a></li>
+                           <li class="divider"></li>
+                       {% endfor %}
+                       </ul>
+                   </li>
+
+                   {% if user %}
                    <li class="dropdown" dropdown>
                        <a href="#" dropdown-toggle>
                            Options <b class="caret"></b>
@@ -63,7 +76,7 @@
                            <li><a href="/logout/">Logout</a></li>
                        </ul>
                    </li>
-                       {% endif %}
+                   {% endif %}
                </ul>
             </div><!--/.navbar-collapse -->
         </div>

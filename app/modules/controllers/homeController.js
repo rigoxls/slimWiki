@@ -11,7 +11,8 @@ var Home = function(){
 
 Home.prototype.home = function(req, res, next){
     var object = {
-        user: req.user
+        user: req.user,
+        topics: ['php','js','node','mysql','html']
     };
     console.info(object);
     res.render('home', object);
