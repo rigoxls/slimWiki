@@ -19,10 +19,21 @@ var Dashboard = function(){
 };
 
 Dashboard.prototype.dashboard = function(req, res, next){
-    var object = {
-        user: req.user
-    };
-    res.render('dashboard', object);
+    var topics = [];
+
+    this.dbService['getTopics']({}, function(resData){
+        if(resData){
+            topics = resData.doc;
+            var object = {
+                user: req.user,
+                topics: topics
+            };
+            console.info(object);
+            res.render('dashboard', object);
+        }else{
+            console.log('something wrong has happened, calling the service !');
+        }
+    });
 };
 
 Dashboard.prototype.post = function(req, res, next){
