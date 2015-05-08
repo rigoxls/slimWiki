@@ -2,7 +2,7 @@
    Rigo's custom styles
    ========================================================================== */
 body{
-    background-color: #fff;
+    background: url('/images/home-bg.jpg');
 }
 
 h3.panel-title{
@@ -34,13 +34,14 @@ a.glyphicon-edit, a.glyphicon-trash{
 
 .container .jumbotron{
     margin-top: 15px;
+    background: ghostwhite;
 }
 
 
 .container .author-container{
     position: relative;
     text-align: center;
-    background: #eee;
+    background: ghostwhite;
     padding: 15px;
     border-radius: 7px;
 }
@@ -130,7 +131,6 @@ time.comments{
 
 div.login-buttons{
     z-index: 100;
-    background-color: #FFFFFF;
 }
 
 a.btn-twitter{
@@ -147,9 +147,9 @@ a.btn-twitter{
         margin-left: 150px;
     }
 
-    .container .jumbotron.normal{
+    div.panel-normal{
         margin-left: 0px !important;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     .container .author-container{
@@ -177,4 +177,32 @@ a.btn-twitter{
         padding-left: 50px;
         margin-top: -5px;
     }
+
+    div.home-articles{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    div.thumbnail{
+        padding: 20px 10px 30px 10px;
+    }
+
+    p.article-desc{
+        min-height: 70px;
+    }
+
+    div.home-tags{
+        position: absolute;
+        top: 210px;
+    }
+
+    div.home-float-bg{
+        background-color: darkred;
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        height: 160px;
+        z-index: -1;
+    }
+
 }

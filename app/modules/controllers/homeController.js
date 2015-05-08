@@ -20,7 +20,6 @@ Home.prototype.home = function(req, res, next){
                 user: req.user,
                 topics: topics
             };
-            console.info(object);
             res.render('home', object);
         }else{
             console.log('something wrong has happened, calling the service !');
