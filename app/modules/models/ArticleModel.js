@@ -77,13 +77,30 @@ ArticleModel.prototype.update = function(data, callback){
 
     this.model.update(
     {
-        _id     : articleId,
+        _id:      articleId,
         user_id : data.user._id //important, just update own article
     },
     {
         $set: settedValues
     }
     ,options,
+    function(err, doc){
+        callback(doc);
+    });
+};
+
+ArticleModel.prototype.removeComment = function(data, callback){
+
+    var options = { multi: true };
+
+    this.model.update(
+    {
+        _id: data.articleId,
+        'comments._id': data.commentId
+    },
+    {
+        $set: { "comments.$.deleted" : true }
+    },
     function(err, doc){
         callback(doc);
     });
@@ -107,6 +124,8 @@ ArticleModel.prototype.addComment = function(data, callback){
         find_query.comments.name = data.name;
         find_query.comments.email = data.email;
     }
+
+    find_query.comments._id = mongoose.Types.ObjectId(),
 
     this.model.update(
     {

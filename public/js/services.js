@@ -34,15 +34,32 @@
                         deferred.resolve(data);
                     })
                     .error(function(e){
-                        deferred.reject(e)
+                        deferred.reject(e);
                     });
 
                 return promise;
             };
 
-            factory.removeComment = function(){
-                //here remove message
-                console.info('messages removed');
+            factory.removeComment = function(articleId, commentId){
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                var comment = {};
+
+                comment.commentId = commentId;
+                comment.articleId = articleId;
+                comment.action = "removeComment";
+
+                console.info(comment);
+
+                $http.post('/dashboard/post/', comment)
+                    .success(function(data){
+                        deferred.resolve(data);
+                    })
+                    .error(function(e){
+                        deferred.reject(e);
+                    });
+
+                return promise;
             };
 
             return factory;

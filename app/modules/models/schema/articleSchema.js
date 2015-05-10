@@ -13,13 +13,14 @@ var ArticleSchema = new Schema({
     created_at: { type: Date, default: Date.now },
     edited_at: { type: Date, default: Date.now },
     tags : [],
-    comments: {
-        user: { type: Schema.ObjectId, ref: "User" },
+    comments: [{
+        _id: { type: Schema.ObjectId },
         comment: String,
         name: String,
         email: String,
-        date: Date
-    }
+        date: Date,
+        deleted: Boolean
+    }]
 });
 
 var ArticleSchema = mongoose.model('Article', ArticleSchema);

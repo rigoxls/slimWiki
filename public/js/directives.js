@@ -19,6 +19,13 @@
                 link: function(scope, el, attrs){},
                 controller: function ($scope, $window) {
 
+                    $scope.isAuthor = function(currentUserId, authorId){
+                        if(currentUserId == authorId){
+                            return true;
+                        }
+                        return false;
+                    };
+
                     $scope.getComments = function(){
                         if(!$scope.permalink){
                             $scope.permalink = $window.location.hash.replace(/#\/showArticle\//g,'');
@@ -28,6 +35,8 @@
                             .then(function(promise){
                                 if(promise.data.comments){
                                     $scope.comments = promise.data.comments;
+                                    $scope.articleId = promise.data._id;
+                                    $scope.authorId = promise.data.user_id._id;
                                     promise.data.comments.sort(function(a, b){
                                         if(a.date > b.date){
                                             return -1;
@@ -62,7 +71,15 @@
                         }
                     };
 
-                    $scope.deleteMessage = function(){};
+                    $scope.removeComment = function(articleId, commentId){
+                        slimWikiService.removeComment(articleId, commentId)
+                            .then(function(promise){
+                                $scope.getComments();
+                            },function(err){
+                                console.info('Promise : Error returned');
+                                console.info(err);
+                            })
+                    };
 
                     $scope.getComments();
                 }

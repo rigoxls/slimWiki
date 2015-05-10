@@ -145,4 +145,19 @@ DbService.prototype.getComments = function(data, callback){
     }
 };
 
+DbService.prototype.removeComment = function(data, callback){
+    if(data.articleId){
+        this.articleModel.removeComment(data, function(doc){
+            if(doc){
+                var textResponse = "comment Deleted";
+                callback({ doc: doc, textResponse: textResponse});
+            }else{
+                callback(null);
+            }
+        })
+    }else{
+        callback(null);
+    }
+};
+
 module.exports = DbService;

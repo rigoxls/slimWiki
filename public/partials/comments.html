@@ -39,7 +39,7 @@
 </div>
 
 <div class="show-comments">
-    <div class="alone-comment" ng-repeat="comment in comments">
+    <div class="alone-comment" ng-repeat="comment in comments" ng-if="!comment.deleted">
         <hr></hr>
         <figure>
             <a href="#">
@@ -49,9 +49,11 @@
         <div class="content">
             <div>
                 <strong>{{comment.user.name || comment.name }}</strong>
-                <time class="comments" datetime="{{article.createdAt}}" pubdate="">
+                <time class="comments" datetime="{{comment.date}}" pubdate="">
                     {{ comment.date | date : 'fullDate'}}
+                    <span ng-if="isAuthor(currentUser, authorId)" class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeComment(articleId, comment._id)"></span>
                 </time>
+
             </div>
             {{comment.comment}}
         </div>
