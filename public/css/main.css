@@ -143,6 +143,10 @@ a.btn-twitter{
     cursor: pointer;
 }
 
+button.search{
+    margin: 0px;
+}
+
 @media screen and (min-width: 768px){
     .jumbotron .h1, .jumbotron h1 {
         font-size: 50px !important;
