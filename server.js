@@ -9,7 +9,7 @@ var http = require('http'),
 if(env == 'development'){
     mongoose.connect('mongodb://' + conf.mongoDB.host + '/' + conf.mongoDB.name);
 }else{
-    /*mongoose.connect('mongodb://' + mLab.user + ':' + mLab.password + '@' + mLab.host + '/' + mLab.name);*/
+    mongoose.connect('mongodb://' + mLab.user + ':' + mLab.password + '@' + mLab.host + '/' + mLab.name);
 }
 
 var app = new expressServer();
