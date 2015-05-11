@@ -7,6 +7,7 @@
 
         var findArticles = {
             action: 'findArticles',
+            allArticles: true,
             key: $routeParams.key
         };
 

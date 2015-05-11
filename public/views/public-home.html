@@ -3,6 +3,16 @@
         Latest Articles
     </h2>
 
+    <div ng-show="articles.none">
+        <h1>
+            Opss No Wikis to show !!
+            <a class="anchorjs-link" href="#"><span class="anchorjs-icon"></span></a></h1>
+            <p>
+                You can try with another search !!
+            </p>
+
+    </div>
+
     <div class="col-sm-12 col-md-3 removing home-articles" ng-repeat="article in articles" id="a_{{article._id}}">
         <div class="thumbnail">
           <div class="caption caption-list home-caption">

@@ -172,11 +172,13 @@ ArticleModel.prototype.findByKey = function(data, callback){
         $or:
         [
             { title: new RegExp(data.key, 'i') },
+            { content: new RegExp(data.key, 'i') },
+            { description: new RegExp(data.key, 'i') },
             { tags: data.key }
         ]
     };
 
-    if(data.user){
+    if(data.user && !data.allArticles){
         query.user_id = data.user._id;
     }
 
@@ -185,7 +187,7 @@ ArticleModel.prototype.findByKey = function(data, callback){
     {},
     {
         sort:{
-            title : 1
+            created_at : -1
         }
     },
     function(err, doc){

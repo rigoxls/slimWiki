@@ -42,6 +42,10 @@
             },200);
         };
 
+        $scope.searchByTag = function(tag){
+            $window.location = '/#/home/' + tag;
+        };
+
         //sintax highlight
         $scope.setHighlighting();
 

@@ -114,5 +114,21 @@
                     });
                 }
             };
-        });
+        })
+
+        .directive('searchForm', function(){
+            return {
+                restrict: 'E',
+                templateUrl: '../partials/search.html',
+                controller: function($scope, $window){
+
+                    $scope.submitForm = function(isValid){
+                        if(isValid){
+                            $window.location.href = '/#/home/' + $scope.keyText;
+                        }
+                    };
+
+                }
+            }
+        })
 })();

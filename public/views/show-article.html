@@ -27,7 +27,7 @@
     <!-- warning, success, default , primary -->
 
     <div class="bootstrap-tagsinput">
-        <span class="tag label label-primary label-important" ng-repeat="tag in article.tags">{{ tag }}</span>
+        <span class="tag label label-primary label-important" ng-click="searchByTag(tag)" ng-repeat="tag in article.tags">{{ tag }}</span>
     </div>
 
     <comments-form article-id="{{article.id}}" permalink="{{article.permalink}}" currentuser="{{currentUser._id}}"></comments-form>
