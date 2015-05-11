@@ -160,4 +160,19 @@ DbService.prototype.removeComment = function(data, callback){
     }
 };
 
+DbService.prototype.getAuthor = function(data, callback){
+    if(data.authorId){
+        this.userModel.getAuthor(data, function(doc){
+            if(doc){
+                var textResponse = "Author gotten";
+                callback({ doc: doc, textResponse: textResponse});
+            }else{
+                callback(null);
+            }
+        });
+    }else{
+        callback(null);
+    }
+};
+
 module.exports = DbService;

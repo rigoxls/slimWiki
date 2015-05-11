@@ -15,21 +15,26 @@
         $routeProvider
 
         .when('/',{
-            redirectTo : '/home/'
+            redirectTo: '/home/'
         })
 
         .when('/home/:key?', {
-            templateUrl : '../views/public-home.html',
-            controller : 'homeController'
+            templateUrl: '../views/public-home.html',
+            controller: 'homeController'
+        })
+
+        .when('/showAuthor/:id',{
+            templateUrl: '../views/show-author.html',
+            controller: 'showAuthorController'
         })
 
         .when('/showArticle/:permalink',{
-            templateUrl : '../views/show-article.html',
-            controller : 'showArticleController'
+            templateUrl: '../views/show-article.html',
+            controller: 'showArticleController'
         })
 
         .otherwise('/',{
-            redirectTo : '/home/'
+            redirectTo: '/home/'
         })
 
     }]);

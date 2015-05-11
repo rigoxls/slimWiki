@@ -49,8 +49,6 @@
                 comment.articleId = articleId;
                 comment.action = "removeComment";
 
-                console.info(comment);
-
                 $http.post('/dashboard/post/', comment)
                     .success(function(data){
                         deferred.resolve(data);

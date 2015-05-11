@@ -1,0 +1,14 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{ author.name}}</h1>
+        <figure>
+            <a href="/#/showAuthor/{{author._id}}">
+                <img class="autor-image" ng-src="{{author.photo}}" width="70" height="70" alt="" ng-show="author.photo">
+            </a>
+        </figure>
+        <time datetime="{{author.createdAt}}" pubdate="">
+           Member since {{ author.createdAt | date : 'fullDate'}}
+        </time>
+        <p>{{ author.bio }}</p>
+    </div>
+</div>

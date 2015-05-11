@@ -38,6 +38,17 @@ UserModel.prototype.findOrCreate = function(data, callback){
     });
 };
 
+UserModel.prototype.getAuthor = function(data, callback){
+    this.model.findOne({
+        _id: data.authorId
+    },
+    function(err, user){
+        if(err) throw(err);
+
+        if(!err && user!=null) return callback(user);
+    });
+};
+
 UserModel.prototype.findAndUpdate = function(data, callback){
     var userId = data.id;
     delete data.id;
